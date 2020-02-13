@@ -505,7 +505,7 @@
             position: fixed;
             top: 0px;
             left: 0px;
-            z-index: 2;
+            z-index: 10;
             height: 100vh;
             width: 100vw;
             background-color: rgba(0,0,0,0.4);
@@ -683,6 +683,7 @@
             right: 0;
             background-color: #38bfdd;
             border-top-left-radius: 55px;
+            border-bottom-right-radius: 6px;
             background-image: url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+PGc+PGc+Cgk8Zz4KCQk8cGF0aCBkPSJNNTExLjU2Myw0MzQuMjU5Yy0xLjcyOC0xNDIuMzI5LTEyNC40Mi0yNTguMjQyLTI3Ny4wODctMjYzLjQxOVY5NS45OTljMC0xNy42NDUtMTQuMzQyLTMxLjk5OS0zMS45NzQtMzEuOTk5ICAgIGMtNy45MzEsMC0xNS41OTEsMy4wNDItMjEuNTI0LDguNTYyYzAsMC0xMzQuODI4LDEyNC44MjktMTczLjYwOSwxNjMuNzU1QzIuNjIzLDI0MS4xMDksMCwyNDguMDg4LDAsMjU1Ljk5NCAgICBjMCw3LjkwNiwyLjYyMywxNC44ODUsNy4zNjksMTkuNjg3YzM4Ljc4MSwzOC45MTUsMTczLjYwOSwxNjMuNzQ1LDE3My42MDksMTYzLjc0NWM1LjkzMyw1LjUyMSwxMy41OTMsOC41NjIsMjEuNTI0LDguNTYyICAgIGMxNy42MzEsMCwzMS45NzQtMTQuMzU0LDMxLjk3NC0zMS45OTl2LTc0LjU5MWMxNTMuNDc5LDIuMTU2LDI1NS43OTIsNTAuNjAzLDI1NS43OTIsOTUuOTI0YzAsNS44OTYsNC43NjcsMTAuNjY2LDEwLjY1OCwxMC42NjYgICAgYzAuMTY3LDAuMDIxLDAuMzMzLDAuMDEsMC40MTYsMGM1Ljg5MSwwLDEwLjY1OC00Ljc3MSwxMC42NTgtMTAuNjY2QzUxMiw0MzYuMjU5LDUxMS44NTQsNDM1LjIyOCw1MTEuNTYzLDQzNC4yNTl6IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIHN0eWxlPSJmaWxsOiNGRkZGRkYiIGRhdGEtb2xkX2NvbG9yPSIjMDAwMDAwIj48L3BhdGg+Cgk8L2c+CjwvZz48L2c+IDwvc3ZnPg==");
             background-position: 18px 18px;
             background-size: 24px;
@@ -758,7 +759,7 @@
             width: 200px;
             overflow: hidden;
             height: 200px;
-            z-index: 9999;
+            z-index: 9;
         }
 
             #forkongithub a {
@@ -824,6 +825,7 @@
             }
 
             if (accountKey && apiKey) {
+                ShowLoading();
                 cloudApi = new postDicomCloudApi(apiKey, accountKey);
                 cloudApi.Initialize(function (result) {
                     console.log(result)
@@ -837,6 +839,7 @@
                     else {
                         document.getElementById("upload_container").style.display = "none";
                     }
+                    HideLoading();
                 });
             }
             else {
@@ -889,6 +892,7 @@
         }
 
         function ShowUploadPage() {
+            ShowLoading();
             cloudApi = new postDicomCloudApi(apiKey, accountKey);
             cloudApi.Initialize(function (result) {
                 console.log(result)
@@ -905,6 +909,7 @@
                 else {
                     document.getElementById("upload_container").style.display = "none";
                 }
+                HideLoading();
             });
 
             if (document.getElementById("progress_area_id").style.display == "block") {
@@ -917,6 +922,7 @@
 
 
         function ShowSearchPage() {
+            ShowLoading();
             cloudApi = new postDicomCloudApi(apiKey, accountKey);
             cloudApi.Initialize(function (result) {
                 console.log(result)
@@ -930,14 +936,15 @@
                     }
                     UserSearchOnSelected();
                 }
+                HideLoading();
             });
         }
 
         function PatientOrderSearch() {
             var searchResultString = "";
             if (userUuid && institutionUuid) {
+                ShowLoading();
                 cloudApi.GetPatientOrderList(function (result) {
-                    ShowLoading();
                     console.log(result);
                     if (result.Success == true) {
                         for (i = 0; i < result.SearchResultList.length; ++i) {
@@ -967,10 +974,10 @@
 
         var selectedDicomResultList = null;
         function SelectFiles(event, type) {
+            ShowLoading();
             var fileCount = event.target.files.length;
 
             cloudApi.ReadDicomFiles(event.target.files, function (result) {
-                ShowLoading();
                 selectedDicomResultList = result;
                 var uploadResultString = "";
 
@@ -991,9 +998,6 @@
                     }
                     document.getElementById("upload_result_tbody").innerHTML = uploadResultString;
                     document.getElementById("upload_result_grid").style.display = "block";
-                    HideLoading();
-                }
-                else {
                     HideLoading();
                 }
             })
@@ -1174,7 +1178,7 @@
                 var url = progress.Result;
                 var iframe = document.getElementById("view_iframe");
                 iframe.src = url;
-                document.getElementById("view_url_text").innerHTML = window.location.origin + "" + url;
+                document.getElementById("view_url_text").innerHTML = url;
                 ShowIframe();
             })
         }
