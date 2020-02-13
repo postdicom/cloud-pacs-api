@@ -6,5 +6,7 @@ You can reach live demo <a href="https://www.postdicom.com/cloud-api/reference-i
 
 <img src="images/api_main_page.jpg"/>
 
+<img src="images/api_viewer.jpg"/>
+
 # Documentation
 You can reach documentation <a href="https://www.postdicom.com/en/knowledge-base/api-documentation/using-postdicom-cloud-api">here.</a>
