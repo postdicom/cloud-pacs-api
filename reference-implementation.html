@@ -1,0 +1,1628 @@
+<html>
+<head>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+        }
+
+        input, button {
+            font-family: inherit;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .initialize_container {
+            position: absolute;
+            width: calc(100% - 40px);
+            height: 450px;
+            max-width: 750px;
+            margin: 10vh auto;
+            left: 0;
+            right: 0;
+            border-radius: 6px;
+            box-shadow: -5px 4px 7px #d6d6d6;
+        }
+
+        .box_l {
+            float: left;
+            width: 259px;
+            height: 100%;
+            background-color: #38bfdd;
+            border-top-left-radius: 6px;
+            border-bottom-left-radius: 6px;
+            border: 1px solid #38bfdd;
+            text-align: center;
+            display: table;
+        }
+
+        .box_r {
+            float: left;
+            width: calc(100% - 302px);
+            height: calc(100% - 42px);
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-left: none;
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+            padding: 20px;
+        }
+
+            .box_r h2 {
+                color: #4a4a4a;
+                font-size: 18px;
+                text-align: center;
+                margin-top: 10px;
+                margin-bottom: 20px;
+                font-weight: 100;
+                text-shadow: 0px 3px 9px #d6d6d6;
+            }
+
+            .box_r form {
+                text-align: center;
+                max-width: 320px;
+                margin: auto;
+                margin-top: 50px;
+            }
+
+                .box_r form span {
+                    float: left;
+                    width: 100%;
+                    color: #4a4a4a;
+                }
+
+            .box_r label {
+                float: left;
+                font-weight: 700;
+                color: #4a4a4a;
+                font-size: 16px;
+                margin-bottom: 5px;
+                margin-left: 5px;
+            }
+
+        .logo {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .logo_b {
+            width: 80px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #f3fbfd;
+            font-size: 1.2rem;
+            padding: 0 10px;
+        }
+
+        .desc_content {
+            float: left;
+            width: 100%;
+        }
+
+            .desc_content h3 {
+                text-align: center;
+                font-size: 16px;
+                font-weight: 100;
+                line-height: 1.6;
+                text-shadow: 0px 3px 9px #d6d6d6;
+            }
+
+
+        .a_tag_link {
+            color: #38bfdd;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+            .a_tag_link:hover {
+                text-decoration: underline;
+            }
+
+        .input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: #fff;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #c3c3c3;
+            box-shadow: inset 0 3px 0 #f1f1f1;
+            color: #4a4a4a;
+            display: block;
+            font-family: inherit;
+            font-size: .875rem;
+            height: 1.96094rem;
+            margin: 0 0 .76562rem;
+            padding: .38281rem;
+            width: 100%;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            border-radius: 3px;
+            transition: box-shadow .45s,border-color .45s ease-in-out;
+            outline-color: #38bfdd;
+            margin-bottom: 30px;
+        }
+
+            .input:focus, .input:active {
+                box-shadow: 0px 0px 5px #38bfdd
+            }
+
+        select {
+            cursor: pointer;
+            background-position: calc(100% - 5px);
+            background-size: 13px;
+            background-repeat: no-repeat;
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ5MS45OTYgNDkxLjk5NiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDkxLjk5NiA0OTEuOTk2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiPjxnPjxnPgoJPGc+CgkJPHBhdGggZD0iTTQ4NC4xMzIsMTI0Ljk4NmwtMTYuMTE2LTE2LjIyOGMtNS4wNzItNS4wNjgtMTEuODItNy44Ni0xOS4wMzItNy44NmMtNy4yMDgsMC0xMy45NjQsMi43OTItMTkuMDM2LDcuODZsLTE4My44NCwxODMuODQ4ICAgIEw2Mi4wNTYsMTA4LjU1NGMtNS4wNjQtNS4wNjgtMTEuODItNy44NTYtMTkuMDI4LTcuODU2cy0xMy45NjgsMi43ODgtMTkuMDM2LDcuODU2bC0xNi4xMiwxNi4xMjggICAgYy0xMC40OTYsMTAuNDg4LTEwLjQ5NiwyNy41NzIsMCwzOC4wNmwyMTkuMTM2LDIxOS45MjRjNS4wNjQsNS4wNjQsMTEuODEyLDguNjMyLDE5LjA4NCw4LjYzMmgwLjA4NCAgICBjNy4yMTIsMCwxMy45Ni0zLjU3MiwxOS4wMjQtOC42MzJsMjE4LjkzMi0yMTkuMzI4YzUuMDcyLTUuMDY0LDcuODU2LTEyLjAxNiw3Ljg2NC0xOS4yMjQgICAgQzQ5MS45OTYsMTM2LjkwMiw0ODkuMjA0LDEzMC4wNDYsNDg0LjEzMiwxMjQuOTg2eiIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBzdHlsZT0iZmlsbDojNEE0QTRBIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCI+PC9wYXRoPgoJPC9nPgo8L2c+PC9nPiA8L3N2Zz4=");
+            padding-right: 25px !important;
+        }
+
+            select option {
+                cursor: pointer;
+            }
+
+        .button {
+            padding: 10px 30px;
+            margin-top: 20px;
+            background-color: #38bfdd;
+            border: 2px solid #38bfdd;
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.25s all ease-in-out;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+            .button:hover {
+                background-color: transparent;
+                color: #38bfdd;
+                box-shadow: 0px 1px 5px #b5b5b5;
+            }
+
+        #api_select_process_type_area {
+            display: none;
+        }
+
+        .display_flex {
+            float: left;
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .each_app_container {
+            height: auto;
+            margin: 10px 20px;
+            width: 160px;
+            cursor: pointer;
+        }
+
+            .each_app_container h4 {
+                color: #4a4a4a;
+            }
+
+        .app_img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: auto;
+            border: 2px solid #eff0f4;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 40px;
+            box-shadow: 0px 2px 3px #e2e2e2;
+        }
+
+        .unselect_upload {
+            background-image: url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNDg2LjMgNDg2LjMiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQ4Ni4zIDQ4Ni4zOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIGNsYXNzPSIiPjxnPjxnPgoJPGc+CgkJPHBhdGggZD0iTTM5NS41LDEzNS44Yy01LjItMzAuOS0yMC41LTU5LjEtNDMuOS04MC41Yy0yNi0yMy44LTU5LjgtMzYuOS05NS0zNi45Yy0yNy4yLDAtNTMuNyw3LjgtNzYuNCwyMi41ICAgIGMtMTguOSwxMi4yLTM0LjYsMjguNy00NS43LDQ4LjFjLTQuOC0wLjktOS44LTEuNC0xNC44LTEuNGMtNDIuNSwwLTc3LjEsMzQuNi03Ny4xLDc3LjFjMCw1LjUsMC42LDEwLjgsMS42LDE2ICAgIEMxNi43LDIwMC43LDAsMjMyLjksMCwyNjcuMmMwLDI3LjcsMTAuMyw1NC42LDI5LjEsNzUuOWMxOS4zLDIxLjgsNDQuOCwzNC43LDcyLDM2LjJjMC4zLDAsMC41LDAsMC44LDBoODYgICAgYzcuNSwwLDEzLjUtNiwxMy41LTEzLjVzLTYtMTMuNS0xMy41LTEzLjVoLTg1LjZDNjEuNCwzNDkuOCwyNywzMTAuOSwyNywyNjcuMWMwLTI4LjMsMTUuMi01NC43LDM5LjctNjkgICAgYzUuNy0zLjMsOC4xLTEwLjIsNS45LTE2LjRjLTItNS40LTMtMTEuMS0zLTE3LjJjMC0yNy42LDIyLjUtNTAuMSw1MC4xLTUwLjFjNS45LDAsMTEuNywxLDE3LjEsM2M2LjYsMi40LDEzLjktMC42LDE2LjktNi45ICAgIGMxOC43LTM5LjcsNTkuMS02NS4zLDEwMy02NS4zYzU5LDAsMTA3LjcsNDQuMiwxMTMuMywxMDIuOGMwLjYsNi4xLDUuMiwxMSwxMS4yLDEyYzQ0LjUsNy42LDc4LjEsNDguNyw3OC4xLDk1LjYgICAgYzAsNDkuNy0zOS4xLDkyLjktODcuMyw5Ni42aC03My43Yy03LjUsMC0xMy41LDYtMTMuNSwxMy41czYsMTMuNSwxMy41LDEzLjVoNzQuMmMwLjMsMCwwLjYsMCwxLDBjMzAuNS0yLjIsNTktMTYuMiw4MC4yLTM5LjYgICAgYzIxLjEtMjMuMiwzMi42LTUzLDMyLjYtODRDNDg2LjIsMTk5LjUsNDQ3LjksMTQ5LjYsMzk1LjUsMTM1Ljh6IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIHN0eWxlPSJmaWxsOiM5QUE4QzIiIGRhdGEtb2xkX2NvbG9yPSIjMDAwMDAwIj48L3BhdGg+CgkJPHBhdGggZD0iTTMyNC4yLDI4MGM1LjMtNS4zLDUuMy0xMy44LDAtMTkuMWwtNzEuNS03MS41Yy0yLjUtMi41LTYtNC05LjUtNHMtNywxLjQtOS41LDRsLTcxLjUsNzEuNWMtNS4zLDUuMy01LjMsMTMuOCwwLDE5LjEgICAgYzIuNiwyLjYsNi4xLDQsOS41LDRzNi45LTEuMyw5LjUtNGw0OC41LTQ4LjV2MjIyLjljMCw3LjUsNiwxMy41LDEzLjUsMTMuNXMxMy41LTYsMTMuNS0xMy41VjIzMS41bDQ4LjUsNDguNSAgICBDMzEwLjQsMjg1LjMsMzE4LjksMjg1LjMsMzI0LjIsMjgweiIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBzdHlsZT0iZmlsbDojOUFBOEMyIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCI+PC9wYXRoPgoJPC9nPgo8L2c+PC9nPiA8L3N2Zz4=");
+        }
+
+        .select_upload {
+            background-image: url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNDg2LjMgNDg2LjMiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQ4Ni4zIDQ4Ni4zOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIGNsYXNzPSIiPjxnPjxnPgoJPGc+CgkJPHBhdGggZD0iTTM5NS41LDEzNS44Yy01LjItMzAuOS0yMC41LTU5LjEtNDMuOS04MC41Yy0yNi0yMy44LTU5LjgtMzYuOS05NS0zNi45Yy0yNy4yLDAtNTMuNyw3LjgtNzYuNCwyMi41ICAgIGMtMTguOSwxMi4yLTM0LjYsMjguNy00NS43LDQ4LjFjLTQuOC0wLjktOS44LTEuNC0xNC44LTEuNGMtNDIuNSwwLTc3LjEsMzQuNi03Ny4xLDc3LjFjMCw1LjUsMC42LDEwLjgsMS42LDE2ICAgIEMxNi43LDIwMC43LDAsMjMyLjksMCwyNjcuMmMwLDI3LjcsMTAuMyw1NC42LDI5LjEsNzUuOWMxOS4zLDIxLjgsNDQuOCwzNC43LDcyLDM2LjJjMC4zLDAsMC41LDAsMC44LDBoODYgICAgYzcuNSwwLDEzLjUtNiwxMy41LTEzLjVzLTYtMTMuNS0xMy41LTEzLjVoLTg1LjZDNjEuNCwzNDkuOCwyNywzMTAuOSwyNywyNjcuMWMwLTI4LjMsMTUuMi01NC43LDM5LjctNjkgICAgYzUuNy0zLjMsOC4xLTEwLjIsNS45LTE2LjRjLTItNS40LTMtMTEuMS0zLTE3LjJjMC0yNy42LDIyLjUtNTAuMSw1MC4xLTUwLjFjNS45LDAsMTEuNywxLDE3LjEsM2M2LjYsMi40LDEzLjktMC42LDE2LjktNi45ICAgIGMxOC43LTM5LjcsNTkuMS02NS4zLDEwMy02NS4zYzU5LDAsMTA3LjcsNDQuMiwxMTMuMywxMDIuOGMwLjYsNi4xLDUuMiwxMSwxMS4yLDEyYzQ0LjUsNy42LDc4LjEsNDguNyw3OC4xLDk1LjYgICAgYzAsNDkuNy0zOS4xLDkyLjktODcuMyw5Ni42aC03My43Yy03LjUsMC0xMy41LDYtMTMuNSwxMy41czYsMTMuNSwxMy41LDEzLjVoNzQuMmMwLjMsMCwwLjYsMCwxLDBjMzAuNS0yLjIsNTktMTYuMiw4MC4yLTM5LjYgICAgYzIxLjEtMjMuMiwzMi42LTUzLDMyLjYtODRDNDg2LjIsMTk5LjUsNDQ3LjksMTQ5LjYsMzk1LjUsMTM1Ljh6IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIHN0eWxlPSJmaWxsOiMzOEJGREQiIGRhdGEtb2xkX2NvbG9yPSIjMDAwMDAwIj48L3BhdGg+CgkJPHBhdGggZD0iTTMyNC4yLDI4MGM1LjMtNS4zLDUuMy0xMy44LDAtMTkuMWwtNzEuNS03MS41Yy0yLjUtMi41LTYtNC05LjUtNHMtNywxLjQtOS41LDRsLTcxLjUsNzEuNWMtNS4zLDUuMy01LjMsMTMuOCwwLDE5LjEgICAgYzIuNiwyLjYsNi4xLDQsOS41LDRzNi45LTEuMyw5LjUtNGw0OC41LTQ4LjV2MjIyLjljMCw3LjUsNiwxMy41LDEzLjUsMTMuNXMxMy41LTYsMTMuNS0xMy41VjIzMS41bDQ4LjUsNDguNSAgICBDMzEwLjQsMjg1LjMsMzE4LjksMjg1LjMsMzI0LjIsMjgweiIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBzdHlsZT0iZmlsbDojMzhCRkREIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCI+PC9wYXRoPgoJPC9nPgo8L2c+PC9nPiA8L3N2Zz4=");
+        }
+
+        .unselect_search {
+            background-image: url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiBjbGFzcz0iIj48Zz48Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0zMTAsMTkwYy01LjUyLDAtMTAsNC40OC0xMCwxMHM0LjQ4LDEwLDEwLDEwYzUuNTIsMCwxMC00LjQ4LDEwLTEwUzMxNS41MiwxOTAsMzEwLDE5MHoiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgc3R5bGU9ImZpbGw6IzlBQThDMiIgZGF0YS1vbGRfY29sb3I9IiMwMDAwMDAiPjwvcGF0aD4KCTwvZz4KPC9nPjxnPgoJPGc+CgkJPHBhdGggZD0iTTUwMC4yODEsNDQzLjcxOWwtMTMzLjQ4LTEzMy40OEMzODguNTQ2LDI3Ny40ODUsNDAwLDIzOS41NTUsNDAwLDIwMEM0MDAsODkuNzIsMzEwLjI4LDAsMjAwLDBTMCw4OS43MiwwLDIwMCAgICBzODkuNzIsMjAwLDIwMCwyMDBjMzkuNTU2LDAsNzcuNDg2LTExLjQ1NSwxMTAuMjM5LTMzLjE5OGwzNi44OTUsMzYuODk1YzAuMDA1LDAuMDA1LDAuMDEsMC4wMSwwLjAxNiwwLjAxNmw5Ni41NjgsOTYuNTY4ICAgIEM0NTEuMjc2LDUwNy44MzgsNDYxLjMxOSw1MTIsNDcyLDUxMmMxMC42ODEsMCwyMC43MjQtNC4xNjIsMjguMjc4LTExLjcxNkM1MDcuODM3LDQ5Mi43MzEsNTEyLDQ4Mi42ODcsNTEyLDQ3MiAgICBTNTA3LjgzNyw0NTEuMjY5LDUwMC4yODEsNDQzLjcxOXogTTMwNS41MzYsMzQ1LjcyN2MwLDAuMDAxLTAuMDAxLDAuMDAxLTAuMDAyLDAuMDAyQzI3NC42NjcsMzY4LjE0OSwyMzguMTc1LDM4MCwyMDAsMzgwICAgIGMtOTkuMjUyLDAtMTgwLTgwLjc0OC0xODAtMTgwUzEwMC43NDgsMjAsMjAwLDIwczE4MCw4MC43NDgsMTgwLDE4MGMwLDM4LjE3NS0xMS44NTEsNzQuNjY3LTM0LjI3MiwxMDUuNTM1ICAgIEMzMzQuNTExLDMyMC45ODgsMzIwLjk4OSwzMzQuNTExLDMwNS41MzYsMzQ1LjcyN3ogTTMyNi41MTYsMzU0Ljc5M2MxMC4zNS04LjQ2NywxOS44MTEtMTcuOTI4LDI4LjI3Ny0yOC4yNzdsMjguMzcxLDI4LjM3MSAgICBjLTguNjI4LDEwLjE4My0xOC4wOTQsMTkuNjUtMjguMjc3LDI4LjI3N0wzMjYuNTE2LDM1NC43OTN6IE00ODYuMTM5LDQ4Ni4xMzljLTMuNzgsMy43OC04LjgwMSw1Ljg2MS0xNC4xMzksNS44NjEgICAgcy0xMC4zNTktMi4wODEtMTQuMTM5LTUuODYxbC04OC43OTUtODguNzk1YzEwLjEyNy04LjY5MSwxOS41ODctMTguMTUsMjguMjc3LTI4LjI3N2w4OC43OTgsODguNzk4ICAgIEM0ODkuOTE5LDQ2MS42MzksNDkyLDQ2Ni42NTgsNDkyLDQ3MkM0OTIsNDc3LjM0Miw0ODkuOTE5LDQ4Mi4zNjEsNDg2LjEzOSw0ODYuMTM5eiIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBzdHlsZT0iZmlsbDojOUFBOEMyIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCI+PC9wYXRoPgoJPC9nPgo8L2c+PGc+Cgk8Zz4KCQk8cGF0aCBkPSJNMjAwLDQwYy04OC4yMjUsMC0xNjAsNzEuNzc1LTE2MCwxNjBzNzEuNzc1LDE2MCwxNjAsMTYwczE2MC03MS43NzUsMTYwLTE2MFMyODguMjI1LDQwLDIwMCw0MHogTTIwMCwzNDAgICAgYy03Ny4xOTYsMC0xNDAtNjIuODA0LTE0MC0xNDBTMTIyLjgwNCw2MCwyMDAsNjBzMTQwLDYyLjgwNCwxNDAsMTQwUzI3Ny4xOTYsMzQwLDIwMCwzNDB6IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIHN0eWxlPSJmaWxsOiM5QUE4QzIiIGRhdGEtb2xkX2NvbG9yPSIjMDAwMDAwIj48L3BhdGg+Cgk8L2c+CjwvZz48Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0zMTIuMDY1LDE1Ny4wNzNjLTguNjExLTIyLjQxMi0yMy42MDQtNDEuNTc0LTQzLjM2LTU1LjQxM0MyNDguNDc5LDg3LjQ5LDIyNC43MjEsODAsMjAwLDgwYy01LjUyMiwwLTEwLDQuNDc4LTEwLDEwICAgIGMwLDUuNTIyLDQuNDc4LDEwLDEwLDEwYzQxLjA5OSwwLDc4LjYzMSwyNS44MTgsOTMuMzk2LDY0LjI0N2MxLjUyOCwzLjk3Niw1LjMxNyw2LjQxNiw5LjMzNyw2LjQxNiAgICBjMS4xOTIsMCwyLjQwNS0wLjIxNSwzLjU4NC0wLjY2OEMzMTEuNDcyLDE2OC4wMTQsMzE0LjA0NiwxNjIuMjI5LDMxMi4wNjUsMTU3LjA3M3oiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgc3R5bGU9ImZpbGw6IzlBQThDMiIgZGF0YS1vbGRfY29sb3I9IiMwMDAwMDAiPjwvcGF0aD4KCTwvZz4KPC9nPjwvZz4gPC9zdmc+");
+        }
+
+        .select_search {
+            background-image: url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiBjbGFzcz0iIj48Zz48Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0zMTAsMTkwYy01LjUyLDAtMTAsNC40OC0xMCwxMHM0LjQ4LDEwLDEwLDEwYzUuNTIsMCwxMC00LjQ4LDEwLTEwUzMxNS41MiwxOTAsMzEwLDE5MHoiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgc3R5bGU9ImZpbGw6IzM4QkZERCIgZGF0YS1vbGRfY29sb3I9IiMwMDAwMDAiPjwvcGF0aD4KCTwvZz4KPC9nPjxnPgoJPGc+CgkJPHBhdGggZD0iTTUwMC4yODEsNDQzLjcxOWwtMTMzLjQ4LTEzMy40OEMzODguNTQ2LDI3Ny40ODUsNDAwLDIzOS41NTUsNDAwLDIwMEM0MDAsODkuNzIsMzEwLjI4LDAsMjAwLDBTMCw4OS43MiwwLDIwMCAgICBzODkuNzIsMjAwLDIwMCwyMDBjMzkuNTU2LDAsNzcuNDg2LTExLjQ1NSwxMTAuMjM5LTMzLjE5OGwzNi44OTUsMzYuODk1YzAuMDA1LDAuMDA1LDAuMDEsMC4wMSwwLjAxNiwwLjAxNmw5Ni41NjgsOTYuNTY4ICAgIEM0NTEuMjc2LDUwNy44MzgsNDYxLjMxOSw1MTIsNDcyLDUxMmMxMC42ODEsMCwyMC43MjQtNC4xNjIsMjguMjc4LTExLjcxNkM1MDcuODM3LDQ5Mi43MzEsNTEyLDQ4Mi42ODcsNTEyLDQ3MiAgICBTNTA3LjgzNyw0NTEuMjY5LDUwMC4yODEsNDQzLjcxOXogTTMwNS41MzYsMzQ1LjcyN2MwLDAuMDAxLTAuMDAxLDAuMDAxLTAuMDAyLDAuMDAyQzI3NC42NjcsMzY4LjE0OSwyMzguMTc1LDM4MCwyMDAsMzgwICAgIGMtOTkuMjUyLDAtMTgwLTgwLjc0OC0xODAtMTgwUzEwMC43NDgsMjAsMjAwLDIwczE4MCw4MC43NDgsMTgwLDE4MGMwLDM4LjE3NS0xMS44NTEsNzQuNjY3LTM0LjI3MiwxMDUuNTM1ICAgIEMzMzQuNTExLDMyMC45ODgsMzIwLjk4OSwzMzQuNTExLDMwNS41MzYsMzQ1LjcyN3ogTTMyNi41MTYsMzU0Ljc5M2MxMC4zNS04LjQ2NywxOS44MTEtMTcuOTI4LDI4LjI3Ny0yOC4yNzdsMjguMzcxLDI4LjM3MSAgICBjLTguNjI4LDEwLjE4My0xOC4wOTQsMTkuNjUtMjguMjc3LDI4LjI3N0wzMjYuNTE2LDM1NC43OTN6IE00ODYuMTM5LDQ4Ni4xMzljLTMuNzgsMy43OC04LjgwMSw1Ljg2MS0xNC4xMzksNS44NjEgICAgcy0xMC4zNTktMi4wODEtMTQuMTM5LTUuODYxbC04OC43OTUtODguNzk1YzEwLjEyNy04LjY5MSwxOS41ODctMTguMTUsMjguMjc3LTI4LjI3N2w4OC43OTgsODguNzk4ICAgIEM0ODkuOTE5LDQ2MS42MzksNDkyLDQ2Ni42NTgsNDkyLDQ3MkM0OTIsNDc3LjM0Miw0ODkuOTE5LDQ4Mi4zNjEsNDg2LjEzOSw0ODYuMTM5eiIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBzdHlsZT0iZmlsbDojMzhCRkREIiBkYXRhLW9sZF9jb2xvcj0iIzAwMDAwMCI+PC9wYXRoPgoJPC9nPgo8L2c+PGc+Cgk8Zz4KCQk8cGF0aCBkPSJNMjAwLDQwYy04OC4yMjUsMC0xNjAsNzEuNzc1LTE2MCwxNjBzNzEuNzc1LDE2MCwxNjAsMTYwczE2MC03MS43NzUsMTYwLTE2MFMyODguMjI1LDQwLDIwMCw0MHogTTIwMCwzNDAgICAgYy03Ny4xOTYsMC0xNDAtNjIuODA0LTE0MC0xNDBTMTIyLjgwNCw2MCwyMDAsNjBzMTQwLDYyLjgwNCwxNDAsMTQwUzI3Ny4xOTYsMzQwLDIwMCwzNDB6IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIHN0eWxlPSJmaWxsOiMzOEJGREQiIGRhdGEtb2xkX2NvbG9yPSIjMDAwMDAwIj48L3BhdGg+Cgk8L2c+CjwvZz48Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0zMTIuMDY1LDE1Ny4wNzNjLTguNjExLTIyLjQxMi0yMy42MDQtNDEuNTc0LTQzLjM2LTU1LjQxM0MyNDguNDc5LDg3LjQ5LDIyNC43MjEsODAsMjAwLDgwYy01LjUyMiwwLTEwLDQuNDc4LTEwLDEwICAgIGMwLDUuNTIyLDQuNDc4LDEwLDEwLDEwYzQxLjA5OSwwLDc4LjYzMSwyNS44MTgsOTMuMzk2LDY0LjI0N2MxLjUyOCwzLjk3Niw1LjMxNyw2LjQxNiw5LjMzNyw2LjQxNiAgICBjMS4xOTIsMCwyLjQwNS0wLjIxNSwzLjU4NC0wLjY2OEMzMTEuNDcyLDE2OC4wMTQsMzE0LjA0NiwxNjIuMjI5LDMxMi4wNjUsMTU3LjA3M3oiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgc3R5bGU9ImZpbGw6IzM4QkZERCIgZGF0YS1vbGRfY29sb3I9IiMwMDAwMDAiPjwvcGF0aD4KCTwvZz4KPC9nPjwvZz4gPC9zdmc+");
+        }
+
+        #upload_process_button {
+            display: initial;
+        }
+
+        #search_process_button {
+            display: none;
+        }
+
+        .selected_app {
+            border: 2px solid #38bfdd;
+        }
+
+            .selected_app:after {
+                content: '';
+                width: 24px;
+                height: 24px;
+                background-color: #38bfdd;
+                border-radius: 50%;
+                position: absolute;
+                background-image: url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJCb2xkIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyNCAyNCIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjUxMiI+PGc+PHBhdGggZD0ibS44MjggMTMuMzM2Yy0uMjYxLjMwNC0uMzg4LjY5MS0uMzU3IDEuMDkxcy4yMTUuNzY0LjUyIDEuMDI0bDcuNDAzIDYuMzQ2Yy4yNzUuMjM1LjYxNi4zNjEuOTc0LjM2MS4wNDQgMCAuMDg5LS4wMDIuMTM0LS4wMDYuNDA1LS4wMzYuNzctLjIyOSAxLjAyOC0uNTQybDEyLjY2Mi0xNS40MTFjLjI1NC0uMzEuMzczLS43LjMzNC0xLjA5OS0uMDQtLjM5OS0uMjMxLS43NTktLjU0MS0xLjAxNGwtMi4zMTgtMS45MDRjLS42MzktLjUyNC0xLjU4NS0uNDMyLTIuMTExLjIwN2wtOS43NDUgMTEuODYxLTMuOTE2LTMuMzU1Yy0uNjI4LS41MzYtMS41NzYtLjQ2NS0yLjExNS4xNjN6IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIHN0eWxlPSJmaWxsOiNGRkZGRkYiIGRhdGEtb2xkX2NvbG9yPSIjMDAwMDAwIj48L3BhdGg+PC9nPiA8L3N2Zz4=");
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 13px;
+                margin-left: 20px;
+            }
+
+        #search_container {
+            display: none;
+        }
+
+        .grid {
+            position: absolute;
+            width: calc(100% - 40px);
+            height: auto;
+            max-width: 1320px;
+            margin: 740px auto 10vh auto;
+            left: 0;
+            right: 0;
+            border-radius: 6px;
+            box-shadow: 0px 0px 7px #d6d6d6;
+            border: 1px solid #dddddd;
+            transition: all 0.3s ease-in-out 0s;
+            animation-name: showGrid;
+            animation-duration: 1s;
+            animation-iteration-count: 1;
+        }
+
+            .grid:before {
+                content: 'Search Result';
+                position: absolute;
+                width: 110px;
+                height: 100px;
+                left: calc(50% - 55px);
+                top: -140px;
+                background-image: url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ5Ni4zODUgNDk2LjM4NSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDk2LjM4NSA0OTYuMzg1OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiPjxnPjxnPgoJPGc+CgkJPHBhdGggZD0iTTM1NC42ODgsMjY2LjgzMlYwaC0yMTIuOTl2MjY2LjgzMkgxOC42MzlsMjI5LjU0OCwyMjkuNTUzbDIyOS41NTgtMjI5LjU1M0gzNTQuNjg4eiBNNjYuMTc4LDI4Ni41MjRoOTUuMjEyVjE5LjY5MiAgICBoMTczLjYwNnYyNjYuODMyaDk1LjIxMkwyNDguMTg4LDQ2OC41MzlMNjYuMTc4LDI4Ni41MjR6IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIHN0eWxlPSJmaWxsOiMzOEJGREQiIGRhdGEtb2xkX2NvbG9yPSIjMDAwMDAwIj48L3BhdGg+Cgk8L2c+CjwvZz48L2c+IDwvc3ZnPg==");
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 75px;
+                color: #38bfdd;
+                line-height: 220px;
+                font-weight: 700;
+            }
+
+        @keyframes showGrid {
+            from {
+                transform: translate(0, -40px);
+                opacity: 0.5;
+            }
+
+            to {
+                transform: translate(0, 0px);
+                opacity: 1;
+            }
+        }
+
+        .file_result_container {
+            position: absolute;
+            width: calc(100% - 40px);
+            height: auto;
+            max-width: 1320px;
+            margin: 740px auto 10vh auto;
+            left: 0;
+            right: 0;
+        }
+
+        .progress_container {
+            float: left;
+            width: 100%;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+
+        .progress_content {
+            margin: auto;
+            max-width: 600px;
+        }
+
+        .progress_rows {
+            float: left;
+            width: 100%;
+            height: calc(50% - 20px);
+            margin: 10px 0;
+        }
+
+            .progress_rows label {
+                float: left;
+                width: 190px;
+                text-align: right;
+                color: #4a4a4a;
+                text-shadow: 0px 3px 9px #d6d6d6;
+            }
+
+        .grid_upload {
+            border-radius: 6px;
+            box-shadow: 0px 0px 7px #d6d6d6;
+            border: 1px solid #dddddd;
+            float: left;
+            width: 100%;
+            animation-name: showGrid;
+            animation-duration: 1s;
+            animation-iteration-count: 1;
+        }
+
+            .grid_upload:before {
+                content: 'Selected Files';
+                position: absolute;
+                width: 110px;
+                height: 100px;
+                left: calc(50% - 55px);
+                top: -140px;
+                background-image: url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ5Ni4zODUgNDk2LjM4NSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDk2LjM4NSA0OTYuMzg1OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiPjxnPjxnPgoJPGc+CgkJPHBhdGggZD0iTTM1NC42ODgsMjY2LjgzMlYwaC0yMTIuOTl2MjY2LjgzMkgxOC42MzlsMjI5LjU0OCwyMjkuNTUzbDIyOS41NTgtMjI5LjU1M0gzNTQuNjg4eiBNNjYuMTc4LDI4Ni41MjRoOTUuMjEyVjE5LjY5MiAgICBoMTczLjYwNnYyNjYuODMyaDk1LjIxMkwyNDguMTg4LDQ2OC41MzlMNjYuMTc4LDI4Ni41MjR6IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIHN0eWxlPSJmaWxsOiMzOEJGREQiIGRhdGEtb2xkX2NvbG9yPSIjMDAwMDAwIj48L3BhdGg+Cgk8L2c+CjwvZz48L2c+IDwvc3ZnPg==");
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 75px;
+                color: #38bfdd;
+                line-height: 220px;
+                font-weight: 700;
+            }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+            table th {
+                padding: 15px 10px;
+                text-align: left;
+                color: #ffffff;
+                background-color: #38bfdd;
+                font-size: 14px;
+            }
+
+            table td {
+                padding: 10px;
+                text-align: left;
+                color: #4a4a4a;
+                font-size: 14px;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            table tbody tr:nth-child(odd) {
+                background-color: #ffffff;
+            }
+
+            table tbody tr:nth-child(even) {
+                background-color: #fafafa;
+            }
+
+            table thead th:first-child {
+                border-top-left-radius: 6px;
+            }
+
+            table thead th:last-child {
+                border-top-right-radius: 6px;
+            }
+
+            table tbody tr:hover {
+                background-color: #e5f2fa !important;
+            }
+
+        #search_result_grid {
+            display: none;
+        }
+
+        .table_button {
+            padding: 7px 10px;
+            background-color: #1787a0;
+            border: none;
+            font-size: 13px;
+            color: #ffffff;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.25s all ease-in-out;
+            outline: none;
+            -webkit-appearance: none;
+            margin: 0 5px;
+            float: right;
+        }
+
+            .table_button:hover {
+                background-color: #00657b;
+            }
+
+        #upload_result_grid {
+            display: none;
+        }
+
+        .file {
+            padding: 10px 20px;
+            background-color: #38bfdd;
+            border: 2px solid #38bfdd;
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff !important;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.25s all ease-in-out;
+            outline: none;
+            -webkit-appearance: none;
+            margin: 20px 10px !important;
+            white-space: nowrap;
+        }
+
+            .file:hover {
+                background-color: transparent !important;
+                color: #38bfdd !important;
+                box-shadow: 0px 1px 5px #b5b5b5;
+            }
+
+        #progress_area_id {
+            display: none;
+        }
+
+
+        .progres_outer_div {
+            float: left;
+            width: calc(100% - 212px);
+            height: 17px;
+            border-radius: 20px;
+            background-color: transparent;
+            margin-left: 20px;
+            box-shadow: inset 0px 0px 10px #8a8a8a;
+            border: 1px solid #ababab;
+        }
+
+        .progres_total_inner_div {
+            float: left;
+            height: 17px;
+            border-radius: 20px;
+            background-color: #38bfdd;
+            width: 0%;
+            box-shadow: 0px 0px 3px #1787a0;
+            color: #ffffff;
+            text-align: center;
+            font-size: 14px;
+            text-shadow: 1px 1px 4px #000000;
+        }
+
+        #upload_container {
+            display: none;
+        }
+
+        .form_container {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            z-index: 2;
+            height: 100vh;
+            width: 100vw;
+            background-color: rgba(0,0,0,0.4);
+            display: none;
+        }
+
+        .form_content {
+            width: 96%;
+            margin: auto;
+            height: 96%;
+            max-width: 1000px;
+            max-height: 600px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            position: absolute;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            -moz-border-radius-topleft: 8px;
+            -moz-border-radius-topright: 8px;
+            -webkit-border-top-left-radius: 8px;
+            -webkit-border-top-right-radius: 8px;
+            background-color: #fafafa;
+        }
+
+        .form_header {
+            float: left;
+            width: 100%;
+            height: 40px;
+            background-color: #38bfdd;
+            border-top-left-radius: 7px;
+            border-top-right-radius: 7px;
+            -moz-border-radius-topleft: 7px;
+            -moz-border-radius-topright: 7px;
+            -webkit-border-top-left-radius: 7px;
+            -webkit-border-top-right-radius: 7px;
+        }
+
+        .form_header_text {
+            float: left;
+            margin-left: 40px;
+            width: calc(100% - 80px);
+            height: 100%;
+            display: table;
+        }
+
+            .form_header_text p {
+                display: table-cell;
+                vertical-align: middle;
+                color: #ffffff;
+                text-align: center;
+                font-weight: 700;
+            }
+
+        .form_close_button {
+            width: 40px;
+            float: right;
+            height: 40px;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADdcAAA3XAUIom3gAAAAHdElNRQfiDAcNDBkPebEOAAAAsUlEQVRIx6WVuxEDIQwFNQQURGl0Rk4d9EF6yTqyx2djSZ6nFO0y3OljZjQmm0WnWCIodBabSTMzGhfPGNQQr4xX/kUzJu8RKG44wDQ2ZBVfOGxjQU5xwGEZHTKKIw7dKMeDD8UPfFC8wxriNZUQX+AmpXBXkcMdRRZPK/xaDRVxt7iKRLN5iiOemgB/hfgE8SOKv1EsJLGUxWYS21kcKPJI04eqPNblxSKvNnW5quv9AdgXlL3hPI8TAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTEyLTA3VDEzOjEyOjI1KzAxOjAwYg9x9wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0xMi0wN1QxMzoxMjoyNSswMTowMBNSyUsAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 16px;
+            cursor: pointer;
+        }
+
+        .form_body_class {
+            float: left;
+            margin: 8px;
+            width: calc(100% - 58px);
+            height: calc(100% - 148px);
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            padding: 20px;
+        }
+
+        .anonymize_form_button_area {
+            width: 100%;
+            float: left;
+            height: 50px;
+        }
+
+        .anonymize_form_each_row_class {
+            float: left;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .anonymize_form_each_column_class {
+            float: left;
+            width: calc((100% / 3) - 10px);
+            margin-right: 10px;
+            line-height: 2;
+            min-height: 1px;
+            font-size: 15px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .anonymize_form_button {
+            background-color: #38bfdd;
+            text-align: center;
+            color: #ffffff;
+            padding: 8px;
+            border-radius: 4px;
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            transition: 0.15s all ease;
+            cursor: pointer;
+            outline: none;
+            margin: auto;
+            position: relative;
+            max-width: 175px;
+            font-size: 14px;
+            top: 4px;
+        }
+
+            .anonymize_form_button:hover {
+                background-color: #1399b7;
+            }
+
+        .anonymize_tb {
+            margin-bottom: 0 !important;
+        }
+
+        .select_file_button_area {
+            float: left;
+            width: 100%;
+            height: auto;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .display_none {
+            display: none;
+        }
+
+        .select_file_button {
+            margin: 10px;
+            background-color: #38bfdd;
+            font-size: 15px;
+            color: #ffffff;
+            border-radius: 4px;
+            display: inline-block !important;
+            padding: 9px 20px !important;
+            cursor: pointer !important;
+        }
+
+            .select_file_button:hover {
+                background-color: #1399b7;
+            }
+
+        .file_progress_bar {
+            float: left;
+            width: 100%;
+            height: auto;
+            text-align: center;
+        }
+
+        #document_progress_description {
+            position: relative;
+            top: 12px;
+            color: #04315b;
+        }
+
+        .return {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            bottom: 0;
+            right: 0;
+            background-color: #38bfdd;
+            border-top-left-radius: 55px;
+            background-image: url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiI+PGc+PGc+Cgk8Zz4KCQk8cGF0aCBkPSJNNTExLjU2Myw0MzQuMjU5Yy0xLjcyOC0xNDIuMzI5LTEyNC40Mi0yNTguMjQyLTI3Ny4wODctMjYzLjQxOVY5NS45OTljMC0xNy42NDUtMTQuMzQyLTMxLjk5OS0zMS45NzQtMzEuOTk5ICAgIGMtNy45MzEsMC0xNS41OTEsMy4wNDItMjEuNTI0LDguNTYyYzAsMC0xMzQuODI4LDEyNC44MjktMTczLjYwOSwxNjMuNzU1QzIuNjIzLDI0MS4xMDksMCwyNDguMDg4LDAsMjU1Ljk5NCAgICBjMCw3LjkwNiwyLjYyMywxNC44ODUsNy4zNjksMTkuNjg3YzM4Ljc4MSwzOC45MTUsMTczLjYwOSwxNjMuNzQ1LDE3My42MDksMTYzLjc0NWM1LjkzMyw1LjUyMSwxMy41OTMsOC41NjIsMjEuNTI0LDguNTYyICAgIGMxNy42MzEsMCwzMS45NzQtMTQuMzU0LDMxLjk3NC0zMS45OTl2LTc0LjU5MWMxNTMuNDc5LDIuMTU2LDI1NS43OTIsNTAuNjAzLDI1NS43OTIsOTUuOTI0YzAsNS44OTYsNC43NjcsMTAuNjY2LDEwLjY1OCwxMC42NjYgICAgYzAuMTY3LDAuMDIxLDAuMzMzLDAuMDEsMC40MTYsMGM1Ljg5MSwwLDEwLjY1OC00Ljc3MSwxMC42NTgtMTAuNjY2QzUxMiw0MzYuMjU5LDUxMS44NTQsNDM1LjIyOCw1MTEuNTYzLDQzNC4yNTl6IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIHN0eWxlPSJmaWxsOiNGRkZGRkYiIGRhdGEtb2xkX2NvbG9yPSIjMDAwMDAwIj48L3BhdGg+Cgk8L2c+CjwvZz48L2c+IDwvc3ZnPg==");
+            background-position: 18px 18px;
+            background-size: 24px;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            transition: 0.2s all ease-in-out;
+        }
+
+            .return:hover {
+                box-shadow: 1px 1px 3px #4a4a4a;
+            }
+
+        .loader_content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 46px;
+            height: 46px;
+        }
+
+        .loader_outer_div {
+            width: 46px;
+            height: 46px;
+            border: 8px solid #3fbdda;
+            border-right-color: transparent;
+            border-radius: 50%;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            animation: rotation 2s linear infinite;
+        }
+
+        .loader_inner_div {
+            width: 30px;
+            height: 30px;
+            border: 8px solid #ffffff;
+            border-right-color: transparent;
+            border-radius: 50%;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% {
+                transform: rotate(0);
+            }
+
+            100% {
+                transform: rotate(359deg);
+            }
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        .iframe_form_body {
+            float: left;
+            margin: 8px;
+            height: calc(100% - 56px);
+            width: calc(100% - 16px);
+        }
+
+        #forkongithub {
+            position: fixed;
+            display: block;
+            top: 0;
+            right: 0;
+            width: 200px;
+            overflow: hidden;
+            height: 200px;
+            z-index: 9999;
+        }
+
+            #forkongithub a {
+                width: 200px;
+                position: absolute;
+                top: 58px;
+                right: -60px;
+                transform: rotate(45deg);
+                -webkit-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                -moz-transform: rotate(45deg);
+                -o-transform: rotate(45deg);
+                box-shadow: 4px 0px 10px rgba(0,0,0,0.8);
+                background: #000;
+                color: #fff;
+                text-decoration: none;
+                font-family: arial,sans-serif;
+                text-align: center;
+                font-weight: bold;
+                padding: 5px 40px;
+                font-size: 1rem;
+                line-height: 2rem;
+                transition: 0.5s;
+                border-top: 1px solid #fafafa;
+                border-bottom: 1px solid #fafafa;
+            }
+
+                #forkongithub a:hover {
+                    background: #38bfdd;
+                    color: #fff;
+                }
+    </style>
+    <title>PostDICOM Cloud API Reference Implementation</title>
+    <link type="image/x-icon" rel="Shortcut Icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAHuElEQVRYha2XX2wc1RXGf+fueGbsrO/arjEhGJdGqRW5aUoKgvLA3xSiCKFCEUIVQqhCUasiiGjFQ0QfykPFA0WVyhNCEUqrEqk0bREioQEFFUqjQkEpmCgNKXKDZRnjOOubze7OeuaePsy1a4xJhNQrrWbmzt653znfOfd8RzjHsNauBW4EJgEHjAIxcNQ59461dgzYAFwOvA4ccc7NnuubK0d0nvdDQApcGgBcGgA0a7XaEVX9JWBE5CZVPQA4a+1dwE+Bl5xz/zgfgMrKCWvtQJIkX02SpCUiU0ABvAX8G5gA3gfeE5E20Ad4wAJrAsheYAvwbpZlk18YQJIk9wILwPeAJPyuBr4MfAPYBFzknHsvSZJZoBsYBqaAWWAt8BGQJUnyQZqmUZqmZFmmqwFYjYLXKLneA8wB1wJ/BRqUfEfA8fDfRwHrnPuOtfbl8G4r8EegB3hNVR8H2sBDqwGQ5Q/W2huBPkH6YqHThYwX6GUVpO7ReqaMFmgKjDvnDoUgvBEwlLEB0AlATNj4QuCwc27/agDMyokYoV8Ei/FWhAulQr8YamLoE6FbBAFqtRrAlcBFlNz3h9/i/QVAkzJGNllrP7PXkgestTcbJLciJ/rF9CTIWBV5NxaZE+V64FiOurPohhYaz6PHZn0xCfwZ8M65bdbaAwJxjNmqos8L9BRwe6G6W8tMesA5d3JVADVrH1wjJrIi030Y2yfmRAzXJcjhGGnn6PocGi10cF59Oo9OjdfnnrXWXkEZF1uAt7uQfK2pXLWA/hPopMiWU+o/aKg/+Qu6vwm8ssN9fGQ5gKhWq2GU/QZ8isxUReIYRqqYx2NodyFjihxZQDsehnrFmI4W02H9MHCDwL5Bqdw9KCYysGdIKg8LYs7gn+5FrnFiLm8qL/xF86a1dsA5N7cEQFW/m4hs7BdDv5hj/Zi+XpGoH/Ptqpg3PbqxglzWQes96kfn1KcqlXHgD8B2YHhAzMF+MbsuKL14qA/zWIRMtTHHZvB3iBbV3bJw4j9a7ApBev8SAGAiQaox5LHKRLeI7cVcWhXzTi8ymYpZXygftvCug/R0xERNLSbC+gcqyOYE2ZvCI1Ukv0SiPWuQZyKIW+hOgT1tdPKsFg91C39vKoc+RQGQxyLtLsSnQt4j0ukR6fQh+QVSybtFOh7yOpK3od1WH6dIXqvVUNUnjLA+FtlVE7N3QAy9yMMXSeXpLphuoE81VXdZJM0wj03jt4HeYa19yDl3bBHAqIf1lZCSCgMGOiJ8qwJRBSIRNopSN7BB0VQgV9VxytrQV0UmAF9BOjHSjGA6Ro4nkBuRCGUmAufROKTlWmAJwH6jDLVEfQ6zHqKW6kgbPvxEfLuqsqmAiQY+b6gOKpgFmHHOeWvtnRVYdxq/z2J2ZGg+j/95D/JMG01n1N/qVR8VmJ7D7+xG9rXQN51z00sUiMhtTXSohsQL6GQTtWuQyTP4u0TNGwgsqF7ZQhseHWqg6QI6CTwLPJip3pDDnfP4F2eROIJtmerhSKTdUd0xpcUjn+AHDdxfV90J3G2t3eGcc4tZ8DcVGWtCXoXjHVU7L37UqNlrxM+cVble4M1M1Tl0dEGJMtWjixYo8Il6DGVlm8MzhAEtfX0Kzyn1zKvH89l6FAEjTdXhCp6oPLtthlTPopsS5GiCVAt0pKPUm+jwGXx6Gt+gLM2/An7v0ec+1uKeFtoZxOxtovdUYC6Hx8/in5hWP16oPgEcAF5ZtH4RQOrRtAXEaNqF71lQMb1ielLVtA6mgqQFmjZU0waankXTcLY/BwwA13l43anGOcXVBnnRlFph+xl0ty9j5z7gEeAW4N4lAM65g9baTkc1n9Xiw7aYnlRkU131SARzEQwrjBfQaKLtTDVyqsdFxKvqBGX2bADmPBo1lPWgjRDtI5Rl3N2nXRteluK3J/HN5RQsFqMfhYCcFcUmwniCbO9C3gCtCzJWoI0MBlqqcYHOOOeetdbGwGbgJ8CTQA7sBHYDdeABYB9w9Me+6zbg0M8ap46sBmBzWDxFWddHI+RoFzRBrgBOeGh38Ou0tHjSOVe31j4FDIvILar6aqD0OuAFoArcGsCkwA+cc1Mrg7ACSzJsI6WK2QRc7GFLDpqjX8vRSwp0CLgK+DqQZln2ryRJDOWh0gEuCe6ep5RvrXB/MXAa+FOWZcVKAIuSbDpwNkUpItZS6rvZ8DxFKTRs8NCiJVPAq5Qy7ED4xk1hrgNcQyloTzrnOis3XwLgnPt1oGKM0sWDlBw2AzXNYF0jAGiGLHiMZYIkvNsKPB+8efsiBdbaE6sJkk+p4iRJtgJfCZZsIZwLwDrKtNpAKcEiEXkvrM+SJBkJFk9SRv4C8DalZHsreO+l1ZTxSlFqAvJhYEJEOqo6Gj6cU+a8AWadc+3ziNJFmg4uFyDnBBBA/BCYoewBDlNG8CCl+9eF54mQhr/h3LL8dudc4/M2/zwAl1H2Bccpg/PacN8I8wY45pw7Ya1dD1xP2cI5/tclLR7V+5eduquOz3RGWZZNZ1n2fpZl00mSDFCmpwbrRihpaKRp+hFwNzAGvEsZM18Cxikz4Unn3MI5d+f8zWlPuNpl15gyIA3lQWNEZKeqfp/SC78L1/b5NodVKPgi4//Rnv8XjFuFCmt1QVkAAAAASUVORK5CYII=" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://www.postdicom.com/cloud-api/PostDicomCloudApi.2.8.min.js"></script>
+
+    <script>
+        var apiKey;
+        var accountKey;
+        var userUuid;
+        var institutionUuid;
+        var selectedPatientOrderUuid = null;;
+
+        var cloudApi;
+        var accountUserList;
+        var accountUserInstitutionList;
+
+        function ConnectToApi() {
+            document.getElementById("upload_container").style.display = "none";
+
+            if (document.getElementById("accountKey").value) {
+                accountKey = document.getElementById("accountKey").value;
+            }
+            else {
+                alert("Account Key must be filled");
+            }
+            if (document.getElementById("apiKey").value) {
+                apiKey = document.getElementById("apiKey").value;
+            }
+            else {
+                alert("Api Key must be filled");
+            }
+
+            if (accountKey && apiKey) {
+                cloudApi = new postDicomCloudApi(apiKey, accountKey);
+                cloudApi.Initialize(function (result) {
+                    console.log(result)
+                    if (result.Success) {
+                        var apiStartScreen = document.getElementById("api_description_text_area");
+                        var apiSelectProcessTypeScreen = document.getElementById("api_select_process_type_area");
+
+                        apiStartScreen.style.display = "none";
+                        apiSelectProcessTypeScreen.style.display = "block";
+                    }
+                    else {
+                        document.getElementById("upload_container").style.display = "none";
+                    }
+                });
+            }
+            else {
+                alert("Please fill all blanks");
+            }
+        }
+
+        function ReturnSelectScreen() {
+            document.getElementById("upload_container").style.display = "none";
+            document.getElementById("search_container").style.display = "none";
+            document.getElementById("api_select_process_type_area").style.display = "block";
+        }
+
+        function UploadProcessTypeOnClicked() {
+            var selectedApp = document.getElementById("app_upload");
+            var unselectedApp = document.getElementById("app_search");
+
+            selectedApp.classList.add("selected_app");
+            selectedApp.classList.remove("unselect_upload");
+            selectedApp.classList.add("select_upload");
+
+            document.getElementById("app_upload_t").style.color = "#38bfdd";
+            document.getElementById("app_search_t").style.color = "#4a4a4a";
+
+            unselectedApp.classList.remove("selected_app");
+            unselectedApp.classList.remove("select_search");
+            unselectedApp.classList.add("unselect_search");
+
+            document.getElementById("upload_process_button").style.display = "initial";
+            document.getElementById("search_process_button").style.display = "none";
+        }
+
+        function SearchProcessTypeOnClicked() {
+            var selectedApp = document.getElementById("app_search");
+            var unselectedApp = document.getElementById("app_upload");
+
+            selectedApp.classList.add("selected_app");
+            selectedApp.classList.remove("unselect_search");
+            selectedApp.classList.add("select_search");
+
+            document.getElementById("app_search_t").style.color = "#38bfdd";
+            document.getElementById("app_upload_t").style.color = "#4a4a4a";
+
+            unselectedApp.classList.remove("selected_app");
+            unselectedApp.classList.remove("select_upload");
+            unselectedApp.classList.add("unselect_upload");
+
+            document.getElementById("upload_process_button").style.display = "none";
+            document.getElementById("search_process_button").style.display = "initial";
+        }
+
+        function ShowUploadPage() {
+            cloudApi = new postDicomCloudApi(apiKey, accountKey);
+            cloudApi.Initialize(function (result) {
+                console.log(result)
+                if (result.Success) {
+                    accountUserList = result.Account.UserList;
+                    document.getElementById("api_select_process_type_area").style.display = "none";
+
+                    document.getElementById("upload_container").style.display = "block";
+                    for (var i = 0; i < accountUserList.length; i++) {
+                        document.getElementById("UserSelectBox").innerHTML = document.getElementById("UserSelectBox").innerHTML + "<option value='&quot;" + accountUserList[i].UserUuid + "&quot;'>&quot;" + accountUserList[i].UserName + "&quot;</option>"
+                    }
+                    UserOnSelected();
+                }
+                else {
+                    document.getElementById("upload_container").style.display = "none";
+                }
+            });
+
+            if (document.getElementById("progress_area_id").style.display == "block") {
+                document.getElementById("upload_result_grid").style.animationName = "kill-animation";
+            }
+            else {
+                document.getElementById("upload_result_grid").style.animationName = "showGrid";
+            }
+        }
+
+
+        function ShowSearchPage() {
+            cloudApi = new postDicomCloudApi(apiKey, accountKey);
+            cloudApi.Initialize(function (result) {
+                console.log(result)
+                if (result.Success) {
+                    accountUserList = result.Account.UserList;
+                    document.getElementById("api_select_process_type_area").style.display = "none";
+
+                    document.getElementById("search_container").style.display = "block";
+                    for (var i = 0; i < accountUserList.length; i++) {
+                        document.getElementById("UserSearchSelectBox").innerHTML = document.getElementById("UserSearchSelectBox").innerHTML + "<option value='&quot;" + accountUserList[i].UserUuid + "&quot;'>&quot;" + accountUserList[i].UserName + "&quot;</option>"
+                    }
+                    UserSearchOnSelected();
+                }
+            });
+        }
+
+        function PatientOrderSearch() {
+            var searchResultString = "";
+            if (userUuid && institutionUuid) {
+                cloudApi.GetPatientOrderList(function (result) {
+                    ShowLoading();
+                    console.log(result);
+                    if (result.Success == true) {
+                        for (i = 0; i < result.SearchResultList.length; ++i) {
+                            searchResultString += `<tr>
+                                                           <td>` + result.SearchResultList[i].PatientName + `</td>
+                                                             <td>` + result.SearchResultList[i].PatientOrderUuid + `</td>
+                                                             <td>` + result.SearchResultList[i].OtherPatientId + `</td>
+                                                             <td>` + result.SearchResultList[i].RequestingProcedureDescription + `</td>
+                                                             <td style="min-width:180px;"><button class='table_button' onclick='GetViewUrl(&quot;` + result.SearchResultList[i].PatientOrderUuid + `&quot;)'>View</button>
+                                                                 <button class='table_button' onclick='ShowAddDocumentForm(&quot;` + result.SearchResultList[i].PatientOrderUuid + `&quot;,&quot;` + result.SearchResultList[i].PatientName + `&quot;)'>Add Document</button></td>
+                                                       </tr>`;
+                        }
+                        document.getElementById("search_result_tbody").innerHTML = searchResultString;
+                        document.getElementById("search_result_grid").style.display = "block";
+                        HideLoading();
+                    }
+                    else {
+                        alert("Error while searching..");
+                        HideLoading();
+                    }
+                }, userUuid, [institutionUuid]);
+            }
+            else {
+                alert("UserUuid and InstitutionUuid must be specified");
+            }
+        }
+
+        var selectedDicomResultList = null;
+        function SelectFiles(event, type) {
+            var fileCount = event.target.files.length;
+
+            cloudApi.ReadDicomFiles(event.target.files, function (result) {
+                ShowLoading();
+                selectedDicomResultList = result;
+                var uploadResultString = "";
+
+                if (result.Progress == 100) {
+                    for (var i = 0; i < result.StudyList.length; i++) {
+                        if (result.StudyList[i].ImageList.length > 0 && result.StudyList[i].SeriesList.length > 0) {
+                            uploadResultString += `<tr>
+                                                           <td>` + result.StudyList[i].PatientName + `</td>
+                                                             <td>` + result.StudyList[i].Modality + `</td>
+                                                             <td>` + result.StudyList[i].PatientId + `</td>
+                                                             <td>` + result.StudyList[i].StudyDescription + `</td>
+                                                             <td>` + result.StudyList[i].SeriesList.length + `</td>
+                                                             <td>` + result.StudyList[i].ImageList.length + `</td>
+                                                             <td style="min-width:240px;"><button class='table_button' onclick='UploadFilesDirectly(&quot;` + i + `&quot;)'>Upload</button>
+                                                                 <button class='table_button' onclick='ShowAnonymizeForm(&quot;` + i + `&quot;)'>Anonymize and Upload</button></td>
+                                                       </tr>`;
+                        }
+                    }
+                    document.getElementById("upload_result_tbody").innerHTML = uploadResultString;
+                    document.getElementById("upload_result_grid").style.display = "block";
+                    HideLoading();
+                }
+                else {
+                    HideLoading();
+                }
+            })
+
+            if (type == 1) {
+                document.getElementById("upload_file_count_text").innerText = fileCount + " file(s) selected";
+            }
+            else {
+                document.getElementById("upload_folder_count_text").innerText = fileCount + " file(s) selected";
+            }
+        }
+
+        function UploadFilesDirectly(resultIndex) {
+            document.getElementById("progress_area_id").style.display = "block";
+            var fileList = selectedDicomResultList.StudyList[resultIndex].FileList;
+
+            cloudApi.UploadDicomFiles(userUuid, institutionUuid, fileList, function (progress) {
+                console.log(progress);
+
+                if (progress.State == "Sending") {
+                    if (progress.Progress >= 100) {
+                        document.getElementById("progress_total_inner").style.width = 100 + '%';
+                        document.getElementById("progress_total_text").innerHTML = "Upload Completed";
+                    }
+                    else {
+                        document.getElementById("progress_total_inner").style.width = Math.round(progress.Progress) + '%';
+                        document.getElementById("progress_total_text").innerHTML = Math.round(progress.Progress).toString() + "%";
+                    }
+                } else if (progress.State == "Reading") {
+                    if (progress.Progress >= 100) {
+                        document.getElementById("progress_inner").style.width = 100 + '%';
+                        document.getElementById("progress_text").innerHTML = "Read Completed";
+                    }
+                    else {
+                        document.getElementById("progress_inner").style.width = Math.round(progress.Progress) + '%';
+                        document.getElementById("progress_text").innerHTML = Math.round(progress.Progress).toString() + "%";
+                    }
+                }
+
+                if (progress.State == "File Upload Completed") {
+                    document.getElementById("progress_inner").style.width = 100 + '%';
+                    document.getElementById("progress_text").innerHTML = "Read Completed";
+                    document.getElementById("progress_total_inner").style.width = 100 + '%';
+                    document.getElementById("progress_total_text").innerHTML = "Upload Completed";
+                    document.getElementById("upload_container").style.height = "180px";
+                }
+
+            })
+        }
+
+        var selectedAnonimizedStudyIndex = 0;
+        function ShowAnonymizeForm(resultIndex) {
+            selectedAnonimizedStudyIndex = resultIndex;
+            var selectedStudy = selectedDicomResultList.StudyList[resultIndex];
+            document.getElementById("anonymize_form_container").style.display = "block";
+
+            document.getElementById("anonymize_patient_name_row").style.display = "block";
+            document.getElementById("anonymize_patient_id_row").style.display = "block";
+            document.getElementById("anonymize_patient_other_id_row").style.display = "block";
+            document.getElementById("anonymize_accession_no_row").style.display = "block";
+            document.getElementById("anonymize_study_date_row").style.display = "block";
+            document.getElementById("anonymize_study_description_row").style.display = "block";
+            document.getElementById("anonymize_institution_name_row").style.display = "block";
+
+            if (selectedStudy.PatientName === undefined) {
+                document.getElementById("anonymize_patient_name_row").style.display = "none";
+            }
+            if (selectedStudy.PatientId === undefined) {
+                document.getElementById("anonymize_patient_id_row").style.display = "none";
+            }
+            if (selectedStudy.OtherPatientId === undefined) {
+                document.getElementById("anonymize_patient_other_id_row").style.display = "none";
+            }
+            if (selectedStudy.AccessionNumber === undefined) {
+                document.getElementById("anonymize_accession_no_row").style.display = "none";
+            }
+            if (selectedStudy.StudyDate === undefined) {
+                document.getElementById("anonymize_study_date_row").style.display = "none";
+            }
+            if (selectedStudy.StudyDescription === undefined) {
+                document.getElementById("anonymize_study_description_row").style.display = "none";
+            }
+            if (selectedStudy.InstitutionName === undefined) {
+                document.getElementById("anonymize_institution_name_row").style.display = "none";
+            }
+
+            var dateArray = [];
+            dateArray = selectedStudy.StudyDate.split('');
+            var year = "";
+            year = dateArray[0] + dateArray[1] + dateArray[2] + dateArray[3];
+            var month = "";
+            month = dateArray[4] + dateArray[5];
+            var day = "";
+            day = dateArray[6] + dateArray[7];
+
+            document.getElementById("selected_study_patient_name").innerHTML = selectedStudy.PatientName;
+            document.getElementById("selected_study_patient_id").innerHTML = selectedStudy.PatientId;
+            document.getElementById("selected_study_patient_other_id").innerHTML = selectedStudy.OtherPatientId;
+            document.getElementById("selected_study_accession_no").innerHTML = selectedStudy.AccessionNumber;
+            document.getElementById("selected_study_study_date").innerHTML = selectedStudy.StudyDate;
+            document.getElementById("selected_study_study_description").innerHTML = selectedStudy.StudyDescription;
+            document.getElementById("selected_study_institution_name").innerHTML = selectedStudy.InstitutionName;
+
+
+            document.getElementById("selected_study_patient_name_tb").value = selectedStudy.PatientName;
+            document.getElementById("selected_study_patient_id_tb").value = selectedStudy.PatientId;
+            document.getElementById("selected_study_patient_other_id_tb").value = selectedStudy.OtherPatientId;
+            document.getElementById("selected_study_accession_no_tb").value = selectedStudy.AccessionNumber;
+            document.getElementById("selected_study_study_date_tb").value = year + "-" + month + "-" + day;
+            document.getElementById("selected_study_study_description_tb").value = selectedStudy.StudyDescription;
+            document.getElementById("selected_study_institution_name_tb").value = selectedStudy.InstitutionName;
+
+        }
+
+        var anonymousData = [];
+        function UploadFilesWithAnonymousValue() {
+            var selectedStudy = selectedDicomResultList.StudyList[selectedAnonimizedStudyIndex];
+
+            anonymousData = [];
+            var patientName = document.getElementById("selected_study_patient_name_tb").value;
+            var patientId = document.getElementById("selected_study_patient_id_tb").value;
+            var otherPatientId = document.getElementById("selected_study_patient_other_id_tb").value;
+            var accessionNumber = document.getElementById("selected_study_accession_no_tb").value;
+            var studyDate = document.getElementById("selected_study_study_date_tb").value;
+            var studyDescription = document.getElementById("selected_study_study_description_tb").value;
+            var institutionName = document.getElementById("selected_study_institution_name_tb").value;
+
+            anonymousData.push({ Tag: cloudApi.DicomTagsEnum.PatientName, Value: patientName });
+            anonymousData.push({ Tag: cloudApi.DicomTagsEnum.PatientId, Value: patientId });
+            anonymousData.push({ Tag: cloudApi.DicomTagsEnum.OtherPatientId, Value: otherPatientId });
+            anonymousData.push({ Tag: cloudApi.DicomTagsEnum.AccessionNumber, Value: accessionNumber });
+            anonymousData.push({ Tag: cloudApi.DicomTagsEnum.StudyDate, Value: studyDate });
+            anonymousData.push({ Tag: cloudApi.DicomTagsEnum.StudyDescription, Value: studyDescription });
+            anonymousData.push({ Tag: cloudApi.DicomTagsEnum.InstitutionName, Value: institutionName });
+
+
+            cloudApi.UploadDicomFilesWithAnonymization(userUuid, institutionUuid, selectedStudy.FileList, anonymousData, function (progress) {
+                document.getElementById("progress_area_id").style.display = "block";
+                console.log(progress);
+                CloseAnonymizeForm();
+
+                if (progress.State == "Sending") {
+                    if (progress.Progress >= 100) {
+                        document.getElementById("progress_total_inner").style.width = 100 + '%';
+                        document.getElementById("progress_total_text").innerHTML = "Upload Completed";
+                    }
+                    else {
+                        document.getElementById("progress_total_inner").style.width = Math.round(progress.Progress) + '%';
+                        document.getElementById("progress_total_text").innerHTML = Math.round(progress.Progress).toString() + "%";
+                    }
+                } else if (progress.State == "Reading") {
+                    if (progress.Progress >= 100) {
+                        document.getElementById("progress_inner").style.width = 100 + '%';
+                        document.getElementById("progress_text").innerHTML = "Read Completed";
+                    }
+                    else {
+                        document.getElementById("progress_inner").style.width = Math.round(progress.Progress) + '%';
+                        document.getElementById("progress_text").innerHTML = Math.round(progress.Progress).toString() + "%";
+                    }
+                }
+
+                if (progress.State == "File Upload Completed") {
+                    document.getElementById("progress_inner").style.width = 100 + '%';
+                    document.getElementById("progress_text").innerHTML = "Read Completed";
+                    document.getElementById("progress_total_inner").style.width = 100 + '%';
+                    document.getElementById("progress_total_text").innerHTML = "Upload Completed";
+                    document.getElementById("upload_container").style.height = "180px";
+                }
+            })
+        }
+
+        function CloseAnonymizeForm() {
+            document.getElementById("anonymize_form_container").style.display = "none";
+        }
+
+        function GetViewUrl(patientOrderUuid) {
+            cloudApi.GetViewUrl(userUuid, patientOrderUuid, function (progress) {
+                var url = progress.Result;
+                var iframe = document.getElementById("view_iframe");
+                iframe.src = url;
+                document.getElementById("view_url_text").innerHTML = window.location.origin + "" + url;
+                ShowIframe();
+            })
+        }
+
+        function ShowIframe() {
+            document.getElementById("view_container").style.display = "block";
+            document.getElementById("body").style.overflow = "hidden";
+        }
+
+        function HideIframe() {
+            document.getElementById("view_container").style.display = "none";
+            var iframe = document.getElementById("view_iframe");
+            if (iframe) {
+                iframe.src = "";
+            }
+            document.getElementById("view_url_text").innerHTML = "";
+            document.getElementById("body").style.overflow = "";
+        }
+
+        function UserOnSelected() {
+            document.getElementById("InstitutionSelectBox").innerHTML = "";
+            userUuid = RemoveChar(document.getElementById("UserSelectBox").value);
+            findInstutionList(userUuid);
+        }
+
+        function UserSearchOnSelected() {
+            document.getElementById("InstitutionSearchSelectBox").innerHTML = "";
+            userUuid = RemoveChar(document.getElementById("UserSearchSelectBox").value);
+            findInstutionSearchList(userUuid);
+        }
+
+        function findInstutionSearchList(userUuid) {
+            for (var i = 0; i < accountUserList.length; i++) {
+                if (accountUserList[i].UserUuid == userUuid) {
+                    accountUserInstitutionList = accountUserList[i].InstitutionList;
+                    for (var j = 0; j < accountUserInstitutionList.length; j++) {
+                        document.getElementById("InstitutionSearchSelectBox").innerHTML = document.getElementById("InstitutionSearchSelectBox").innerHTML + "<option value='&quot;" + accountUserInstitutionList[j].InstitutionUuid + "&quot;'>&quot;" + accountUserInstitutionList[j].InstitutionName + "&quot;</option>"
+                    }
+                    InstitutionSearchOnSelected();
+                }
+            }
+        }
+
+        function findInstutionList(userUuid) {
+            for (var i = 0; i < accountUserList.length; i++) {
+                if (accountUserList[i].UserUuid == userUuid) {
+                    accountUserInstitutionList = accountUserList[i].InstitutionList;
+                    for (var j = 0; j < accountUserInstitutionList.length; j++) {
+                        document.getElementById("InstitutionSelectBox").innerHTML = document.getElementById("InstitutionSelectBox").innerHTML + "<option value='&quot;" + accountUserInstitutionList[j].InstitutionUuid + "&quot;'>&quot;" + accountUserInstitutionList[j].InstitutionName + "&quot;</option>"
+                    }
+                    InstitutionOnSelected();
+                }
+            }
+        }
+
+        function InstitutionOnSelected() {
+            institutionUuid = RemoveChar(document.getElementById("InstitutionSelectBox").value);
+        }
+
+        function InstitutionSearchOnSelected() {
+            institutionUuid = RemoveChar(document.getElementById("InstitutionSearchSelectBox").value);
+        }
+
+        function CeateFolder() {
+            cloudApi.CreateFolder(userUuid, "Api folder", function (result) {
+                console.log(result);
+            })
+        }
+
+        function RemoveChar(text) {
+            return text.replace('"', '').replace('"', '');
+        }
+
+        function ShowAddDocumentForm(patientOrderUuid, patientName) {
+            selectedPatientOrderUuid = patientOrderUuid;
+            document.getElementById("add_document_header_text").innerHTML = 'Add Document to "' + patientName + '"';
+            document.getElementById("add_document_form").style.display = "block";
+            document.getElementById("document_progress_inner").style.width = "0%";
+            document.getElementById("document_progress_text").innerHTML = "0%";
+            document.getElementById("document_progress_description").innerHTML = "Please select files(.pdf, .mp4, .jpeg, .jpg, .png)";
+        }
+
+        function CloseAddDocumentForm() {
+            selectedPatientOrderUuid = null;
+            document.getElementById("add_document_form").style.display = "none";
+        }
+
+        function SelectDocumentFileInputOnChanged(event) {
+            if (selectedPatientOrderUuid) {
+                cloudApi.UploadDocumentFiles(userUuid, institutionUuid, selectedPatientOrderUuid, event.target.files, function (result) {
+                    document.getElementById("document_progress_inner").style.width = result.Progress + "%";
+                    document.getElementById("document_progress_text").innerHTML = Math.round(result.Progress).toString() + "%";
+                    document.getElementById("document_progress_description").innerHTML = result.State;
+                });
+            }
+            else {
+                document.getElementById("document_progress_description").innerHTML = "Please select order!";
+            }
+        }
+
+        function ShowLoading() {
+            document.getElementById("loading_container").style.display = "block";
+        }
+
+        function HideLoading() {
+            document.getElementById("loading_container").style.display = "none";
+        }
+    </script>
+
+</head>
+<body id="body">
+    <span id="forkongithub">
+        <a href="https://github.com/postdicom/cloud-pacs-api" target="_blank">Fork me on GitHub</a>
+    </span>
+
+    <div class="initialize_container" id="api_description_text_area">
+        <div class="box_l">
+            <div class="logo">
+                <img class="logo_b" src="https://www.postdicom.com/ViewerI/Images/Logo/posdicom_logo.svg" />
+                <h1>PostDICOM Cloud API Reference Implementation</h1>
+            </div>
+        </div>
+        <div class="box_r">
+            <h2>Enter your API and Account Keys. Then, click on the "Initialize API" button.</h2>
+            <form autocomplete="off" action="javascript:void(0);">
+                <label>API Key</label>
+                <input type="text" class="input" id="apiKey" />
+                <label>Account Key</label>
+                <input type="text" class="input" id="accountKey" />
+                <button class="button" onclick="ConnectToApi()">Initialize API</button>
+            </form>
+        </div>
+        <div class="desc_content">
+            <h3>For more information please visit <a class="a_tag_link" href="https://www.postdicom.com/en/api-documentation/using-postdicom-cloud-api.html" target="_blank">"Using PostDICOM Cloud API"</a> documentation.<br />If you do not have an API key, <a class="a_tag_link" href="https://www.postdicom.com/en/contact" target="_blank">contact us</a> to get yours.</h3>
+        </div>
+    </div>
+
+    <div class="initialize_container" id="api_select_process_type_area">
+        <div class="box_l">
+            <div class="logo">
+                <img class="logo_b" src="https://www.postdicom.com/ViewerI/Images/Logo/posdicom_logo.svg" />
+                <h1>PostDICOM Cloud API Reference Implementation</h1>
+            </div>
+        </div>
+        <div class="box_r">
+            <h2>Available Cloud API Functions<br /><span style="font-size:13px;">Connection Status: <span style="color:#00b100;">Online</span></span></h2>
+            <form autocomplete="off" action="javascript:void(0);" style="max-width:inherit;">
+                <div class="display_flex">
+                    <div class="each_app_container" onclick="UploadProcessTypeOnClicked()">
+                        <div id="app_upload" class="app_img select_upload selected_app">
+
+                        </div>
+                        <h4 id="app_upload_t" style="color:#38bfdd">I want to upload DICOM files</h4>
+                    </div>
+
+                    <div class="each_app_container" onclick="SearchProcessTypeOnClicked()">
+                        <div id="app_search" class="app_img unselect_search">
+
+                        </div>
+                        <h4 id="app_search_t">I want to search patient orders</h4>
+                    </div>
+                </div>
+
+                <button class="button" id="upload_process_button" onclick="ShowUploadPage()">Go to Upload Page</button>
+                <button class="button" id="search_process_button" onclick="ShowSearchPage()">Go to Search Page</button>
+            </form>
+        </div>
+        <div class="desc_content">
+            <h3>For more information please visit <a class="a_tag_link" href="https://www.postdicom.com/en/api-documentation/using-postdicom-cloud-api.html" target="_blank">"Using PostDICOM Cloud API"</a> documentation.</h3>
+        </div>
+    </div>
+
+    <div id="upload_container">
+        <div class="initialize_container">
+            <div class="box_l">
+                <div class="logo">
+                    <img class="logo_b" src="https://www.postdicom.com/ViewerI/Images/Logo/posdicom_logo.svg" />
+                    <h1>PostDICOM Cloud API Reference Implementation</h1>
+                </div>
+            </div>
+            <div class="box_r">
+                <h2>Upload DICOM Files<br /><span style="font-size:13px;">Connection Status: <span style="color:#00b100;">Online</span></span></h2>
+                <form autocomplete="off" action="javascript:void(0);">
+                    <label>User</label>
+                    <select class="input" id="UserSelectBox" onchange="UserOnSelected()"></select>
+                    <label>Institution</label>
+                    <select class="input" id="InstitutionSelectBox" onchange="InstitutionOnSelected()"></select>
+                    <div style="float:left; width:50%;">
+                        <label class="file">
+                            <input style="display:none;" type="file" multiple onchange="SelectFiles(event,1)">Select File
+                        </label>
+                        <span style="text-indent:-25px;" id="upload_file_count_text">0 file selected</span>
+                    </div>
+                    <div style="float:left; width:50%;">
+                        <label class="file">
+                            <input style="display:none;" type="file" multiple webkitdirectory mozdirectory onchange="SelectFiles(event,2)">Select Folder
+                        </label>
+                        <span id="upload_folder_count_text">0 file selected</span>
+                    </div>
+                </form>
+                <div class="return" title="Return to Cloud API Functions" onclick="ReturnSelectScreen()">
+
+                </div>
+            </div>
+            <div class="desc_content">
+                <h3>For more information please visit <a class="a_tag_link" href="https://www.postdicom.com/en/api-documentation/using-postdicom-cloud-api.html" target="_blank">"Using PostDICOM Cloud API"</a> documentation.</h3>
+            </div>
+        </div>
+
+        <div class="file_result_container">
+            <div id="progress_area_id" class="progress_container">
+                <div class="progress_content">
+                    <div class="progress_rows">
+                        <label>File(s) Read Progress...</label>
+                        <div class="progres_outer_div">
+                            <div id="progress_inner" class="progres_total_inner_div">
+                                <span id="progress_text">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress_rows">
+                        <label>Send Progress...</label>
+                        <div class="progres_outer_div">
+                            <div id="progress_total_inner" class="progres_total_inner_div">
+                                <span id="progress_total_text">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_upload" id="upload_result_grid">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Patient Name</th>
+                            <th>Modality</th>
+                            <th>Patient Id</th>
+                            <th>Study Description</th>
+                            <th>Series</th>
+                            <th>Images</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="upload_result_tbody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="search_container">
+        <div class="initialize_container">
+            <div class="box_l">
+                <div class="logo">
+                    <img class="logo_b" src="https://www.postdicom.com/ViewerI/Images/Logo/posdicom_logo.svg" />
+                    <h1>PostDICOM Cloud API Reference Implementation</h1>
+                </div>
+            </div>
+            <div class="box_r">
+                <h2>Search Patient Orders<br /><span style="font-size:13px;">Connection Status: <span style="color:#00b100;">Online</span></span></h2>
+                <form autocomplete="off" action="javascript:void(0);">
+                    <label>User</label>
+                    <select class="input" id="UserSearchSelectBox" onchange="UserSearchOnSelected()"></select>
+                    <label>Institution</label>
+                    <select class="input" id="InstitutionSearchSelectBox" onchange="InstitutionSearchOnSelected()"></select>
+                    <button class="button" id="search_button" onclick="PatientOrderSearch()">Search Patient Orders</button>
+                </form>
+                <div class="return" title="Return to Cloud API Functions" onclick="ReturnSelectScreen()">
+
+                </div>
+            </div>
+            <div class="desc_content">
+                <h3>For more information please visit <a class="a_tag_link" href="https://www.postdicom.com/en/api-documentation/using-postdicom-cloud-api.html" target="_blank">"Using PostDICOM Cloud API"</a> documentation.</h3>
+            </div>
+        </div>
+
+        <div class="grid" id="search_result_grid">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Patient Name</th>
+                        <th>Patient Order Uid</th>
+                        <th>Patient Id</th>
+                        <th>Procedure Description</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="search_result_tbody"></tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    <div class="form_container" id="anonymize_form_container">
+        <div class="form_content">
+            <div class="form_header">
+                <div class="form_header_text">
+                    <p>Anonymize and Upload Study</p>
+                </div>
+                <div class="form_close_button" onclick="CloseAnonymizeForm()">
+
+                </div>
+            </div>
+            <div class="form_body_class">
+                <div class="anonymize_form_each_row_class" id="anonymize_patient_name_row">
+                    <div class="anonymize_form_each_column_class" style="color:#38bfdd;">
+                        Patient Name
+                    </div>
+                    <div class="anonymize_form_each_column_class" id="selected_study_patient_name">
+
+                    </div>
+                    <div class="anonymize_form_each_column_class">
+                        <input type="text" class="input anonymize_tb" id="selected_study_patient_name_tb" />
+                    </div>
+                </div>
+
+                <div class="anonymize_form_each_row_class" id="anonymize_patient_id_row">
+                    <div class="anonymize_form_each_column_class" style="color:#38bfdd;">
+                        Patient Id
+                    </div>
+                    <div class="anonymize_form_each_column_class" id="selected_study_patient_id">
+
+                    </div>
+                    <div class="anonymize_form_each_column_class">
+                        <input type="text" class="input anonymize_tb" id="selected_study_patient_id_tb" />
+                    </div>
+                </div>
+
+                <div class="anonymize_form_each_row_class" id="anonymize_patient_other_id_row">
+                    <div class="anonymize_form_each_column_class" style="color:#38bfdd;">
+                        Patient Other Ids
+                    </div>
+                    <div class="anonymize_form_each_column_class" id="selected_study_patient_other_id">
+
+                    </div>
+                    <div class="anonymize_form_each_column_class">
+                        <input type="text" class="input anonymize_tb" id="selected_study_patient_other_id_tb" />
+                    </div>
+                </div>
+
+                <div class="anonymize_form_each_row_class" id="anonymize_accession_no_row">
+                    <div class="anonymize_form_each_column_class" style="color:#38bfdd;">
+                        Accession No
+                    </div>
+                    <div class="anonymize_form_each_column_class" id="selected_study_accession_no">
+
+                    </div>
+                    <div class="anonymize_form_each_column_class">
+                        <input type="text" class="input anonymize_tb" id="selected_study_accession_no_tb" />
+                    </div>
+                </div>
+
+                <div class="anonymize_form_each_row_class" id="anonymize_study_date_row">
+                    <div class="anonymize_form_each_column_class" style="color:#38bfdd;">
+                        Study Date
+                    </div>
+                    <div class="anonymize_form_each_column_class" id="selected_study_study_date">
+
+                    </div>
+                    <div class="anonymize_form_each_column_class">
+                        <input type="date" class="input anonymize_tb" id="selected_study_study_date_tb" />
+                    </div>
+                </div>
+
+                <div class="anonymize_form_each_row_class" id="anonymize_study_description_row">
+                    <div class="anonymize_form_each_column_class" style="color:#38bfdd;">
+                        Study Description
+                    </div>
+                    <div class="anonymize_form_each_column_class" id="selected_study_study_description">
+
+                    </div>
+                    <div class="anonymize_form_each_column_class">
+                        <input type="text" class="input anonymize_tb" id="selected_study_study_description_tb" />
+                    </div>
+                </div>
+
+                <div class="anonymize_form_each_row_class" id="anonymize_institution_name_row">
+                    <div class="anonymize_form_each_column_class" style="color:#38bfdd;">
+                        Institution Name
+                    </div>
+                    <div class="anonymize_form_each_column_class" id="selected_study_institution_name">
+
+                    </div>
+                    <div class="anonymize_form_each_column_class">
+                        <input type="text" class="input anonymize_tb" id="selected_study_institution_name_tb" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="anonymize_form_button_area">
+                <div class="anonymize_form_button" onclick="UploadFilesWithAnonymousValue()">Anonymize and Upload</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="add_document_form" class="form_container">
+        <div class="form_content" style="max-width:500px; max-height:270px;">
+            <div class="form_header">
+                <div class="form_header_text">
+                    <p id="add_document_header_text">Add Document</p>
+                </div>
+                <div class="form_close_button" onclick="CloseAddDocumentForm()">
+
+                </div>
+            </div>
+            <div class="form_body_class" style="height:calc(100% - 98px)">
+                <div class="select_file_button_area">
+                    <label class="select_file_button">
+                        <input class="display_none" type="file" multiple onchange="SelectDocumentFileInputOnChanged(event)">Select File
+                    </label>
+                </div>
+                <div class="file_progress_bar">
+                    <div class="progres_outer_div" style="float:none; margin:auto;">
+                        <div id="document_progress_inner" class="progres_total_inner_div" style="width: 100%;">
+                            <span style="margin-left:5px;" id="document_progress_text">100%</span>
+                        </div>
+                    </div>
+                    <label id="document_progress_description">Reading</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form_container" id="loading_container">
+        <div class="loader_content">
+            <div class="loader_outer_div">
+                <div class="loader_inner_div">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form_container" id="view_container">
+        <div class="form_content" style="max-width:inherit; max-height:inherit;">
+            <div class="form_header">
+                <div class="form_header_text">
+                    <p id="view_url_text"></p>
+                </div>
+                <div class="form_close_button" onclick="HideIframe()">
+
+                </div>
+            </div>
+            <div class="iframe_form_body">
+                <iframe id="view_iframe" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
