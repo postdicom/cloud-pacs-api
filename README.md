@@ -2,9 +2,9 @@
 PostDICOM is a Cloud PACS with online DICOM Viewer capability.
 
 # Live Demo
-You can reach live demo <a href="https://www.postdicom.com/cloud-api/reference-implementation">here</a>
+You can reach live demo <a href="https://www.postdicom.com/cloud-api/reference-implementation">here.</a>
 
 <img src="images/api_main_page.jpg"/>
 
 # Documentation
-You can reach documentation <a href="https://www.postdicom.com/en/knowledge-base/api-documentation/using-postdicom-cloud-api">here</a>
+You can reach documentation <a href="https://www.postdicom.com/en/knowledge-base/api-documentation/using-postdicom-cloud-api">here.</a>
