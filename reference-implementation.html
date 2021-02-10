@@ -1121,11 +1121,34 @@
             text-overflow: ellipsis;
             white-space: nowrap;
         }
+
+        .patient_order_uuid_get_url_button {
+            width: 30px;
+            height: 30px;
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMi4wOTIgNTEyLjA5MiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyLjA5MiA1MTIuMDkyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiPjxnPjxnPgoJPGc+CgkJPHBhdGggZD0iTTMxMi40NTMsMTk5LjYwMWMtNi4wNjYtNi4xMDItMTIuNzkyLTExLjUxMS0yMC4wNTMtMTYuMTI4Yy0xOS4yMzItMTIuMzE1LTQxLjU5LTE4Ljg1OS02NC40MjctMTguODU5ICAgIGMtMzEuNjk3LTAuMDU5LTYyLjEwNiwxMi41MzUtODQuNDgsMzQuOTg3TDM0Ljk0OSwzMDguMjNjLTIyLjMzNiwyMi4zNzktMzQuODksNTIuNy0zNC45MSw4NC4zMTggICAgYy0wLjA0Miw2NS45OCw1My40MSwxMTkuNTAxLDExOS4zOSwxMTkuNTQzYzMxLjY0OCwwLjExLDYyLjAyOS0xMi40MjQsODQuMzk1LTM0LjgxNmw4OS42LTg5LjYgICAgYzEuNjI4LTEuNjE0LDIuNTM3LTMuODE2LDIuNTI0LTYuMTA4Yy0wLjAyNy00LjcxMy0zLjg3LTguNTExLTguNTgzLTguNDg0aC0zLjQxM2MtMTguNzIsMC4wNjYtMzcuMjczLTMuNTI5LTU0LjYxMy0xMC41ODEgICAgYy0zLjE5NS0xLjMxNS02Ljg2Ny0wLjU3My05LjMwMSwxLjg3N2wtNjQuNDI3LDY0LjUxMmMtMjAuMDA2LDIwLjAwNi01Mi40NDIsMjAuMDA2LTcyLjQ0OCwwICAgIGMtMjAuMDA2LTIwLjAwNi0yMC4wMDYtNTIuNDQyLDAtNzIuNDQ4bDEwOC45NzEtMTA4Ljg4NWMxOS45OS0xOS45NjUsNTIuMzczLTE5Ljk2NSw3Mi4zNjMsMCAgICBjMTMuNDcyLDEyLjY3OSwzNC40ODYsMTIuNjc5LDQ3Ljk1NywwYzUuNzk2LTUuODAxLDkuMzEtMTMuNDk1LDkuODk5LTIxLjY3NUMzMjIuOTc2LDIxNi4xMDgsMzE5LjM3MSwyMDYuNTM1LDMxMi40NTMsMTk5LjYwMXoiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgc3R5bGU9ImZpbGw6IzM4QkZERCIgZGF0YS1vbGRfY29sb3I9IiMwMDAwMDAiPjwvcGF0aD4KCTwvZz4KPC9nPjxnPgoJPGc+CgkJPHBhdGggZD0iTTQ3Ny4wNjEsMzQuOTkzYy00Ni42NTctNDYuNjU3LTEyMi4zMDMtNDYuNjU3LTE2OC45NiwwbC04OS41MTUsODkuNDI5Yy0yLjQ1OCwyLjQ3LTMuMTY3LDYuMTg1LTEuNzkyLDkuMzg3ICAgIGMxLjM1OSwzLjIxMSw0LjUzNSw1LjI3Miw4LjAyMSw1LjIwNWgzLjE1N2MxOC42OTgtMC4wMzQsMzcuMjIxLDMuNTg5LDU0LjUyOCwxMC42NjdjMy4xOTUsMS4zMTUsNi44NjcsMC41NzMsOS4zMDEtMS44NzcgICAgbDY0LjI1Ni02NC4xNzFjMjAuMDA2LTIwLjAwNiw1Mi40NDItMjAuMDA2LDcyLjQ0OCwwYzIwLjAwNiwyMC4wMDYsMjAuMDA2LDUyLjQ0MiwwLDcyLjQ0OGwtODAuMDQzLDc5Ljk1N2wtMC42ODMsMC43NjggICAgbC0yNy45ODksMjcuODE5Yy0xOS45OSwxOS45NjUtNTIuMzczLDE5Ljk2NS03Mi4zNjMsMGMtMTMuNDcyLTEyLjY3OS0zNC40ODYtMTIuNjc5LTQ3Ljk1NywwICAgIGMtNS44MzMsNS44NDUtOS4zNSwxMy42MDYtOS44OTksMjEuODQ1Yy0wLjYyNCw5Ljc3NSwyLjk4MSwxOS4zNDgsOS44OTksMjYuMjgzYzkuODc3LDkuOTE5LDIxLjQzMywxOC4wMDgsMzQuMTMzLDIzLjg5MyAgICBjMS43OTIsMC44NTMsMy41ODQsMS41MzYsNS4zNzYsMi4zMDRjMS43OTIsMC43NjgsMy42NjksMS4zNjUsNS40NjEsMi4wNDhjMS43OTIsMC42ODMsMy42NjksMS4yOCw1LjQ2MSwxLjc5Mmw1LjAzNSwxLjM2NSAgICBjMy40MTMsMC44NTMsNi44MjcsMS41MzYsMTAuMzI1LDIuMTMzYzQuMjE0LDAuNjI2LDguNDU4LDEuMDI1LDEyLjcxNSwxLjE5NWg1Ljk3M2gwLjUxMmw1LjEyLTAuNTk3ICAgIGMxLjg3Ny0wLjA4NSwzLjg0LTAuNTEyLDYuMDU5LTAuNTEyaDIuOTAxbDUuODg4LTAuODUzbDIuNzMxLTAuNTEybDQuOTQ5LTEuMDI0aDAuOTM5YzIwLjk2MS01LjI2NSw0MC4xMDEtMTYuMTE4LDU1LjM4MS0zMS40MDMgICAgbDEwOC42MjktMTA4LjYyOUM1MjMuNzE4LDE1Ny4yOTYsNTIzLjcxOCw4MS42NSw0NzcuMDYxLDM0Ljk5M3oiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgc3R5bGU9ImZpbGw6IzM4QkZERCIgZGF0YS1vbGRfY29sb3I9IiMwMDAwMDAiPjwvcGF0aD4KCTwvZz4KPC9nPjwvZz4gPC9zdmc+");
+            background-color: transparent;
+            color: #38bfdd;
+            background-repeat: no-repeat;
+            background-size: 18px;
+            border: 2px solid #38bfdd;
+            background-position: center;
+            cursor: pointer;
+            position: absolute;
+            right: 70px;
+            margin-top: -60px;
+            border-radius: 5px;
+            outline: none;
+            transition: 0.25s all ease-in-out;
+        }
+
+            .patient_order_uuid_get_url_button:hover {
+                background-color: #f3f3f3;
+            }
     </style>
     <title>PostDICOM Cloud API Reference Implementation</title>
     <link type="image/x-icon" rel="Shortcut Icon" href="data:image/png;base64,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" />
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <script src="https://www.postdicom.com/cloud-api/PostDicomCloudApi.3.4.min.js"></script>
+    <script src="https://www.postdicom.com/cloud-api/PostDicomCloudApi.4.3.min.js"></script>
 
     <script>
         var apiKey;
@@ -1349,15 +1372,19 @@
                     if (result.Success == true) {
                         for (i = 0; i < result.SearchResultList.length; ++i) {
                             searchResultString += `<tr>
-                                                           <td>` + result.SearchResultList[i].PatientName + `</td>
-                                                             <td>` + result.SearchResultList[i].OtherPatientId + `</td>
-                                                             <td>` + result.SearchResultList[i].OrderModality + `</td>
-                                                             <td>` + result.SearchResultList[i].PatientOrderUuid + `</td>
-                                                             <td>` + result.SearchResultList[i].StudyDescription + `</td>
-                                                             <td>` + result.SearchResultList[i].RequestingProcedureDescription + `</td>
-                                                             <td style="min-width:180px;"><button class='table_button' onclick='GetViewUrl(&quot;` + result.SearchResultList[i].PatientOrderUuid + `&quot;)'>View</button>
-                                                                 <button class='table_button' onclick='ShowAddDocumentForm(&quot;` + result.SearchResultList[i].PatientOrderUuid + `&quot;,&quot;` + result.SearchResultList[i].PatientName + `&quot;)'>Add Document</button></td>
-                                                       </tr>`;
+                                                                       <td>` + result.SearchResultList[i].PatientName + `</td>
+                                                                         <td>` + result.SearchResultList[i].OtherPatientId + `</td>
+                                                                         <td>` + result.SearchResultList[i].OrderModality + `</td>
+                                                                         <td>` + result.SearchResultList[i].PatientOrderUuid + `</td>
+                                                                         <td>` + result.SearchResultList[i].StudyDescription + `</td>
+                                                                         <td>` + result.SearchResultList[i].RequestingProcedureDescription + `</td>
+                                                                         <td style="min-width:250px;">
+                                                                             <button class='table_button' onclick='ShareSelectedOrder(&quot;` + result.SearchResultList[i].PatientOrderUuid + `&quot;)'>ShareOrder</button>
+                                                                             <button class='table_button' onclick='GetOrderDetail(&quot;` + result.SearchResultList[i].PatientOrderUuid + `&quot;)'>Detail</button>
+                                                                             <button class='table_button' onclick='GetViewUrl(&quot;` + result.SearchResultList[i].PatientOrderUuid + `&quot;)'>View</button>
+                                                                             <button class='table_button' onclick='ShowAddDocumentForm(&quot;` + result.SearchResultList[i].PatientOrderUuid + `&quot;,&quot;` + result.SearchResultList[i].PatientName + `&quot;)'>Add Document</button>
+                                                                         </td>
+                                                                   </tr>`;
                         }
                         document.getElementById("search_result_tbody").innerHTML = searchResultString;
                         document.getElementById("search_result_grid").style.display = "block";
@@ -1400,55 +1427,55 @@
                             }
 
                             folderResultString += `<div id="folderId_` + i + `" class="each_folder_container` + isShared + `" ondblclick='FolderOnDoubleClicked(&quot;` + result.Folder.SubFolderList[i].FolderUuid + `&quot;,&quot;` + result.Folder.SubFolderList[i].FolderName + `&quot;)'>
-                                                            <div class="each_folder_name_class">
-                                                             ` + result.Folder.SubFolderList[i].FolderName + `
-                                                            </div>
-                                                            <div class="each_folder_folder_description_class">
-                                                             ` + result.Folder.SubFolderList[i].FolderDescription + `
-                                                            </div>
-                                                            <div class="each_folder_folder_counts_area_class">
-                                                                <div class="each_counts_area_class" style="margin-left: 0px !important" title="Number of orders in current folder">
-                                                                 ` + result.Folder.SubFolderList[i].OrderCount + `
-                                                                </div>
-                                                                <div class="each_counts_area_class" title="Number of orders in current folder and it's sub-folders">
-                                                                 ` + result.Folder.SubFolderList[i].AllSubOrderCount + `
-                                                                </div>
-                                                                <div class="each_counts_area_class" title="Number of folders in current folder">
-                                                                 ` + result.Folder.SubFolderList[i].SubFolderCount + `
-                                                                </div>
-                                                                <div class="each_counts_area_class" title="Number of folders in current folder and it's sub-folders">
-                                                                 ` + result.Folder.SubFolderList[i].AllSubFolderCount + `
-                                                                </div>
-                                                            </div>
-                                                       </div>`;
+                                                                        <div class="each_folder_name_class">
+                                                                         ` + result.Folder.SubFolderList[i].FolderName + `
+                                                                        </div>
+                                                                        <div class="each_folder_folder_description_class">
+                                                                         ` + result.Folder.SubFolderList[i].FolderDescription + `
+                                                                        </div>
+                                                                        <div class="each_folder_folder_counts_area_class">
+                                                                            <div class="each_counts_area_class" style="margin-left: 0px !important" title="Number of orders in current folder">
+                                                                             ` + result.Folder.SubFolderList[i].OrderCount + `
+                                                                            </div>
+                                                                            <div class="each_counts_area_class" title="Number of orders in current folder and it's sub-folders">
+                                                                             ` + result.Folder.SubFolderList[i].AllSubOrderCount + `
+                                                                            </div>
+                                                                            <div class="each_counts_area_class" title="Number of folders in current folder">
+                                                                             ` + result.Folder.SubFolderList[i].SubFolderCount + `
+                                                                            </div>
+                                                                            <div class="each_counts_area_class" title="Number of folders in current folder and it's sub-folders">
+                                                                             ` + result.Folder.SubFolderList[i].AllSubFolderCount + `
+                                                                            </div>
+                                                                        </div>
+                                                                   </div>`;
                         }
 
                         for (var j = 0; j < result.Folder.PatientOrderList.length; j++) {
-                            orderResultString += `<div class="each_order_container_class unselect_order">
-                                                            <div class="each_order_order_modality_class">
-                                                                ` + result.Folder.PatientOrderList[j].OrderModality + `
-                                                            </div>
-                                                            <div class="each_order_patient_information_class" style="margin-top:10px;">
-                                                                ` + result.Folder.PatientOrderList[j].PatientName + `
-                                                            </div>
-                                                            <div class="each_order_patient_information_class">
-                                                                ` + result.Folder.PatientOrderList[j].OtherPatientId + `
-                                                            </div>
-                                                            <div class="each_order_patient_information_class">
-                                                                ` + result.Folder.PatientOrderList[j].PerformedDatetime + `
-                                                            </div>
-                                                            <div class="each_order_patient_information_class">
-                                                                ` + result.Folder.PatientOrderList[j].OrderSize + ` KB
-                                                            </div>
-                                                            <div class="each_order_order_counts_class">
-                                                                <div class="patient_order_images_count_area_class" title="Number of dicom images">
-                                                                    ` + result.Folder.PatientOrderList[j].ImagesCount + `
-                                                                </div>
-                                                                <div class="patient_order_documents_count_area_class" title="Number of documents">
-                                                                    ` + result.Folder.PatientOrderList[j].DocumentsCount + `
-                                                                </div>
-                                                            </div>
-                                                      </div>`;
+                            orderResultString += `<div class="each_order_container_class unselect_order" ondblclick='GetViewUrl(&quot;` + result.Folder.PatientOrderList[j].PatientOrderUuid + `&quot;)'>
+                                                                        <div class="each_order_order_modality_class">
+                                                                            ` + result.Folder.PatientOrderList[j].OrderModality + `
+                                                                        </div>
+                                                                        <div class="each_order_patient_information_class" style="margin-top:10px;">
+                                                                            ` + result.Folder.PatientOrderList[j].PatientName + `
+                                                                        </div>
+                                                                        <div class="each_order_patient_information_class">
+                                                                            ` + result.Folder.PatientOrderList[j].OtherPatientId + `
+                                                                        </div>
+                                                                        <div class="each_order_patient_information_class">
+                                                                            ` + result.Folder.PatientOrderList[j].PerformedDatetime + `
+                                                                        </div>
+                                                                        <div class="each_order_patient_information_class">
+                                                                            ` + result.Folder.PatientOrderList[j].OrderSize + ` KB
+                                                                        </div>
+                                                                        <div class="each_order_order_counts_class">
+                                                                            <div class="patient_order_images_count_area_class" title="Number of dicom images">
+                                                                                ` + result.Folder.PatientOrderList[j].ImagesCount + `
+                                                                            </div>
+                                                                            <div class="patient_order_documents_count_area_class" title="Number of documents">
+                                                                                ` + result.Folder.PatientOrderList[j].DocumentsCount + `
+                                                                            </div>
+                                                                        </div>
+                                                                  </div>`;
                         }
 
                         document.getElementById("folder_result_container").innerHTML = folderResultString;
@@ -1520,15 +1547,15 @@
                     for (var i = 0; i < result.StudyList.length; i++) {
                         if (result.StudyList[i].ImageList.length > 0 && result.StudyList[i].SeriesList.length > 0) {
                             uploadResultString += `<tr>
-                                                           <td>` + result.StudyList[i].PatientName + `</td>
-                                                             <td>` + result.StudyList[i].Modality + `</td>
-                                                             <td>` + result.StudyList[i].PatientId + `</td>
-                                                             <td>` + result.StudyList[i].StudyDescription + `</td>
-                                                             <td>` + result.StudyList[i].SeriesList.length + `</td>
-                                                             <td>` + result.StudyList[i].ImageList.length + `</td>
-                                                             <td style="min-width:240px;"><button class='table_button' onclick='UploadFilesDirectly(&quot;` + i + `&quot;)'>Upload</button>
-                                                                 <button class='table_button' onclick='ShowAnonymizeForm(&quot;` + i + `&quot;)'>Anonymize and Upload</button></td>
-                                                       </tr>`;
+                                                                       <td>` + result.StudyList[i].PatientName + `</td>
+                                                                         <td>` + result.StudyList[i].Modality + `</td>
+                                                                         <td>` + result.StudyList[i].PatientId + `</td>
+                                                                         <td>` + result.StudyList[i].StudyDescription + `</td>
+                                                                         <td>` + result.StudyList[i].SeriesList.length + `</td>
+                                                                         <td>` + result.StudyList[i].ImageList.length + `</td>
+                                                                         <td style="min-width:240px;"><button class='table_button' onclick='UploadFilesDirectly(&quot;` + i + `&quot;)'>Upload</button>
+                                                                             <button class='table_button' onclick='ShowAnonymizeForm(&quot;` + i + `&quot;)'>Anonymize and Upload</button></td>
+                                                                   </tr>`;
                         }
                     }
                     document.getElementById("upload_result_tbody").innerHTML = uploadResultString;
@@ -1722,6 +1749,36 @@
             })
         }
 
+        function GetOnlyViewUrl() {
+            var textValue = "";
+            textValue = document.getElementById("search_patient_order_uuid").value;
+            if (textValue != "") {
+                cloudApi.GetViewUrl(userUuid, textValue, function (progress) {
+                    var url = progress.Result;
+                    var iframe = document.getElementById("view_iframe");
+                    iframe.src = url;
+                    document.getElementById("view_url_text").innerHTML = url;
+                    ShowIframe();
+                })
+            }
+            else {
+                alert("Please fill 'Patient Order Uuid' field!");
+            }
+        }
+
+        function ShareSelectedOrder(patientOrderUuid) {
+            var patientOrderUuidList = [];
+            patientOrderUuidList.push(patientOrderUuid);
+            cloudApi.CreateQuickShareLink(userUuid, patientOrderUuidList, "false", function (result) {
+                if (result.Success) {
+                    console.log(result);
+                }
+                else {
+                    console.error(result.Message);
+                }
+            })
+        }
+
         function ShowIframe() {
             document.getElementById("view_container").style.display = "block";
             document.getElementById("body").style.overflow = "hidden";
@@ -1822,6 +1879,14 @@
 
         function HideLoading() {
             document.getElementById("loading_container").style.display = "none";
+        }
+
+        function GetOrderDetail(patientOrderUuid) {
+            ShowLoading();
+            cloudApi.GetPatientOrderProperties(userUuid, institutionUuid, patientOrderUuid, function (result) {
+                console.log(result);
+                HideLoading();
+            })
         }
     </script>
 
@@ -1986,12 +2051,15 @@
             <div class="box_r">
                 <span class="conn_stat">Connection Status: <span style="color:#00b100;">Online</span></span>
                 <h2>Search Patient Orders<br /></h2>
-                <form autocomplete="off" action="javascript:void(0);">
+                <form autocomplete="off" action="javascript:void(0);" style="margin-top:10px">
                     <label>User</label>
                     <select class="input" id="UserSearchSelectBox" onchange="UserSearchOnSelected()"></select>
                     <label>Institution</label>
                     <select class="input" id="InstitutionSearchSelectBox" onchange="InstitutionSearchOnSelected()"></select>
-                    <button class="button" id="search_button" onclick="PatientOrderSearch()">Search Patient Orders</button>
+                    <label>Patient Order Uuid</label>
+                    <input type="text" class="input" id="search_patient_order_uuid" />
+                    <button class="patient_order_uuid_get_url_button" title="Get View URL" onclick="GetOnlyViewUrl()"></button>
+                    <button class="button" id="search_button" onclick="PatientOrderSearch()" style="margin-top:0">Search Patient Orders</button>
                 </form>
                 <div class="return" title="Return to Cloud API Functions" onclick="ReturnSelectScreen()">
 
@@ -2231,9 +2299,6 @@
                 </div>
             </div>
             <div class="form_body_class">
-                <div class="">
-
-                </div>
                 <div class="create_folder_form_each_row_class" style="margin-top:20px;">
                     <div class="create_folder_form_each_column_class" style="text-align:right;">
                         <span style="color:red;">*</span> Folder Name:
