@@ -11,7 +11,7 @@ You can reach the live demo from the <a href="https://www.postdicom.com/cloud-ap
 
 <img src="images/api_main_page.jpg"/>
 
-To use PostDICOM Cloud API, you need to have the Account Key and the API Key. You can get these keys, add <a href="https://www.postdicom.com/en/cloud-pacs#pricing" <a href="https://www.postdicom.com/en/cloud-pacs#pricing">API for Premium Plan</a> to your PostDICOM subscription. Then, goto "Settings->Cloud API Settings" page to see and copy  these keys.
+To use PostDICOM Cloud API, you need to have the Account Key and the API Key. You can get these keys, add <a href="https://www.postdicom.com/en/cloud-pacs#pricing">API for Premium Plan</a> to your PostDICOM subscription. Then, goto "Settings->Cloud API Settings" page to see and copy  these keys.
 
 <img src="images/api_viewer.jpg"/>
 
